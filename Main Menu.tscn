@@ -155,7 +155,7 @@ volume_db = -6.0
 stream = ExtResource( 3 )
 volume_db = -6.0
 
-[node name="Main Menu Buttons" type="Node" parent="."]
+[node name="Main Menu Buttons" type="Node2D" parent="."]
 
 [node name="Hover" type="AudioStreamPlayer" parent="Main Menu Buttons"]
 stream = ExtResource( 12 )

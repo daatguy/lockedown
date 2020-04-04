@@ -6,7 +6,9 @@ func _ready():
 	connect("mouse_exited", self, "_mouse_exited")
 
 func _mouse_entered():
-	add_color_override("font_color", Color("FFFFFF"))
+	print_debug("hi mom")
+	add_color_override("font_color", Color("#ff2f2f"))
 
 func _mouse_exited():
-	add_color_override("font_color", Color("000000"))
+	add_color_override("font_color", Color("#9a0256"))
+	

@@ -1,6 +1,7 @@
 extends Button
 
-onready var hoverSound = get_node("Hover")
+onready var hoverSound = get_parent().get_node("Hover")
+onready var clickSound = get_parent().get_node("Click")
 const vol = -48;
 const gain = 4;
 const shakeGrow = 0.025;
@@ -9,6 +10,9 @@ const shakeMax = 24;
 var shakeSize = shakeMin;
 var x;
 var y;
+
+func _pressed():
+	clickSound.play();
 
 func _ready():
 	x = self.rect_global_position.x;

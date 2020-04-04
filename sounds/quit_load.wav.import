@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/quit_load.wav-bcc5dab82bbf7ffd8fbe0e3b3ff4f31e.sample"
+
+[deps]
+
+source_file="res://sounds/quit_load.wav"
+dest_files=[ "res://.import/quit_load.wav-bcc5dab82bbf7ffd8fbe0e3b3ff4f31e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

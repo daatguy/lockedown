@@ -1,5 +1,6 @@
 extends Button
 
+var wasHovered = false;
 onready var hoverSound = get_parent().get_node("Hover")
 onready var clickSound = get_parent().get_node("Click")
 const vol = -48;
@@ -20,17 +21,19 @@ func _ready():
 
 func _process(delta):
 	if(self.is_hovered()):
+		wasHovered = true;
 		hoverSound.playing = true;
-		hoverSound.pitch_scale = 1+(shakeSize-shakeMin)/shakeMax;
-		hoverSound.volume_db = vol+gain*(shakeSize-shakeMin)/shakeMax;
+		hoverSound.pitch_scale = 1+(self.shakeSize-shakeMin)/shakeMax;
+		hoverSound.volume_db = vol+gain*(self.shakeSize-shakeMin)/shakeMax;
 		self.rect_global_position.x = randf()*shakeSize-shakeSize/2+x;
 		self.rect_global_position.y = randf()*shakeSize-shakeSize/2+y;
 		if(shakeSize<shakeMax):
-			shakeSize += shakeGrow;
-	else:
+			self.shakeSize += shakeGrow;
+	elif(wasHovered):
+		wasHovered = false;
 		hoverSound.playing = false;
 		hoverSound.pitch_scale = 1
 		hoverSound.volume_db = vol;
-		shakeSize = shakeMin;
+		self.shakeSize = shakeMin;
 		self.rect_global_position.x = x;
 		self.rect_global_position.y = y;

@@ -6,7 +6,6 @@ var time = 0
 func _ready():
 	#Reset the frame
 	frame = 0
-	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -17,4 +16,3 @@ func _process(delta):
 		sounds.get_node("LOCKE").play()
 	elif(frame==14):
 		sounds.get_node("DOWN").play()
-	pass

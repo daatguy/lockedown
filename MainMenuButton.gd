@@ -1,5 +1,8 @@
 extends Button
 
+var maxText = "";
+var textLength = 0;
+const textSpeed = 0.3;
 var wasHovered = false;
 onready var hoverSound = get_parent().get_node("Hover")
 onready var clickSound = get_parent().get_node("Click")
@@ -12,19 +15,21 @@ var shakeSize = shakeMin;
 var x;
 var y;
 
+#Implement in children
+func _on_finished_text():
+	pass
+	
 func _pressed():
 	clickSound.play();
 
 func _ready():
 	x = self.rect_global_position.x;
 	y = self.rect_global_position.y;
-	get_node("../../Title").connect("displayed", self, "_on_Title_displayed")
+	maxText = text;
+	print(maxText);
 	hide()
 
-func _on_Title_displayed():
-	show()
-
-func _process(delta):
+func _process(_delta):
 	if(self.is_hovered()):
 		wasHovered = true;
 		hoverSound.playing = true;
@@ -42,3 +47,13 @@ func _process(delta):
 		self.shakeSize = shakeMin;
 		self.rect_global_position.x = x;
 		self.rect_global_position.y = y;
+		
+	#Texty things
+	
+	if(is_visible()):
+		if(textLength<maxText.length()):
+			textLength += textSpeed;
+			if(textLength>=maxText.length()):
+				textLength = maxText.length();
+				_on_finished_text()
+		text = maxText.substr(0,floor(textLength));

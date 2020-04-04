@@ -4,8 +4,9 @@ var maxText = "";
 var textLength = 0;
 const textSpeed = 0.3;
 var wasHovered = false;
-onready var hoverSound = get_parent().get_node("Hover")
-onready var clickSound = get_parent().get_node("Click")
+onready var loadSound = get_node("Load");
+onready var hoverSound = get_parent().get_node("Hover");
+onready var clickSound = get_parent().get_node("Click");
 const vol = -48;
 const gain = 4;
 const shakeGrow = 0.025;
@@ -51,6 +52,8 @@ func _process(_delta):
 	#Texty things
 	
 	if(is_visible()):
+		if(textLength==0):
+			loadSound.play()
 		if(textLength<maxText.length()):
 			textLength += textSpeed;
 			if(textLength>=maxText.length()):

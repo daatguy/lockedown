@@ -13,11 +13,12 @@ var y;
 func _ready():
 	x = self.rect_global_position.x;
 	y = self.rect_global_position.y;
-	hide()
-	$Parent/Title.connect("displayed", self, "_on_Title_displayed")
+	#hide()
+	#$Parent/Title.connect("displayed", self, "_on_Title_displayed")
 	
 func _on_Title_displayed():
-	show()
+	#show()
+	pass
 
 func _process(delta):
 	if(self.is_hovered()):

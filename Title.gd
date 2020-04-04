@@ -2,6 +2,7 @@ extends AnimatedSprite
 
 onready var sounds = get_node("Sounds")
 var time = 0
+signal main_menu_animation_done
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Reset the frame
@@ -16,3 +17,5 @@ func _process(delta):
 		sounds.get_node("LOCKE").play()
 	elif(frame==14):
 		sounds.get_node("DOWN").play()
+	if(frame==22):
+		emit_signal("main_menu_animation_done")

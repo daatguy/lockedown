@@ -1,7 +1,6 @@
 extends "res://MainMenuButton.gd"
 
 signal play_displayed
-signal play_pressed
 var time = 0;
 var title = false;
 
@@ -21,7 +20,7 @@ func _process(delta):
 	
 func _pressed():
 	._pressed()
-	emit_signal("play_pressed")
+	get_tree().change_scene("res://ingame.tscn")
 	
 func _get_max_text():
 	return "play game";

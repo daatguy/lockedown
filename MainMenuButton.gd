@@ -17,6 +17,11 @@ func _pressed():
 func _ready():
 	x = self.rect_global_position.x;
 	y = self.rect_global_position.y;
+	get_node("../../Title").connect("displayed", self, "_on_Title_displayed")
+	hide()
+
+func _on_Title_displayed():
+	show()
 
 func _process(delta):
 	if(self.is_hovered()):

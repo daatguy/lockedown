@@ -17,5 +17,5 @@ func _process(delta):
 		sounds.get_node("LOCKE").play()
 	elif(frame==14):
 		sounds.get_node("DOWN").play()
-	if(frame==22):
+	if(frame==19):
 		emit_signal("displayed")

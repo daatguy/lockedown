@@ -1,6 +1,7 @@
 extends "res://MainMenuButton.gd"
 
 signal play_displayed
+signal play_pressed
 var time = 0;
 var title = false;
 
@@ -17,6 +18,10 @@ func _process(delta):
 	elif(title && time>=0.8):
 		show()
 		title = false
+	
+func _pressed():
+	._pressed()
+	emit_signal("play_pressed")
 	
 func _get_max_text():
 	return "play game";

@@ -27,7 +27,6 @@ func _ready():
 	x = self.rect_global_position.x;
 	y = self.rect_global_position.y;
 	maxText = text;
-	print(maxText);
 	hide()
 
 func _process(_delta):

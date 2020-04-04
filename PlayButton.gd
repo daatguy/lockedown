@@ -11,6 +11,10 @@ func _ready():
 func _on_Title_displayed():
 	title = true;
 
+func _pressed():
+	._pressed();
+	get_tree().change_scene("ingame.tscn");
+
 func _process(delta):
 	if(title && time<0.8):
 		time += delta

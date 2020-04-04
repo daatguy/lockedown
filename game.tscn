@@ -108,13 +108,11 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="StyleBoxEmpty" id=30]
+[sub_resource type="StyleBoxEmpty" id=23]
 
-[sub_resource type="StyleBoxEmpty" id=31]
+[sub_resource type="StyleBoxEmpty" id=24]
 
-[sub_resource type="StyleBoxEmpty" id=32]
-
-[sub_resource type="StyleBoxEmpty" id=33]
+[sub_resource type="StyleBoxEmpty" id=25]
 
 [sub_resource type="StyleBoxEmpty" id=26]
 
@@ -124,11 +122,13 @@ animations = [ {
 
 [sub_resource type="StyleBoxEmpty" id=29]
 
-[sub_resource type="StyleBoxEmpty" id=24]
+[sub_resource type="StyleBoxEmpty" id=30]
 
-[sub_resource type="StyleBoxEmpty" id=25]
+[sub_resource type="StyleBoxEmpty" id=31]
 
-[sub_resource type="StyleBoxEmpty" id=23]
+[sub_resource type="StyleBoxEmpty" id=32]
+
+[sub_resource type="StyleBoxEmpty" id=33]
 
 [node name="Scene" type="Node2D"]
 
@@ -170,10 +170,10 @@ margin_right = 768.0
 margin_bottom = 340.0
 rect_rotation = -2.0
 mouse_default_cursor_shape = 2
-custom_styles/hover = SubResource( 30 )
-custom_styles/pressed = SubResource( 31 )
-custom_styles/focus = SubResource( 32 )
-custom_styles/normal = SubResource( 33 )
+custom_styles/hover = SubResource( 23 )
+custom_styles/pressed = SubResource( 24 )
+custom_styles/focus = SubResource( 25 )
+custom_styles/normal = SubResource( 26 )
 custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0.603922, 0.00784314, 0.337255, 1 )
@@ -198,10 +198,10 @@ margin_right = 640.0
 margin_bottom = 408.0
 rect_rotation = 2.0
 mouse_default_cursor_shape = 2
-custom_styles/hover = SubResource( 26 )
-custom_styles/pressed = SubResource( 27 )
-custom_styles/focus = SubResource( 28 )
-custom_styles/normal = SubResource( 29 )
+custom_styles/hover = SubResource( 27 )
+custom_styles/pressed = SubResource( 28 )
+custom_styles/focus = SubResource( 29 )
+custom_styles/normal = SubResource( 30 )
 custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0.603922, 0.00784314, 0.337255, 1 )
@@ -226,9 +226,9 @@ margin_right = 626.0
 margin_bottom = 484.0
 rect_rotation = -1.0
 mouse_default_cursor_shape = 2
-custom_styles/pressed = SubResource( 24 )
-custom_styles/focus = SubResource( 25 )
-custom_styles/normal = SubResource( 23 )
+custom_styles/pressed = SubResource( 31 )
+custom_styles/focus = SubResource( 32 )
+custom_styles/normal = SubResource( 33 )
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.603922, 0.00784314, 0.337255, 1 )
 custom_colors/font_color_hover = Color( 1, 0.184314, 0.184314, 1 )

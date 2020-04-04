@@ -1,14 +1,23 @@
-extends Label
+extends Button
+
+const shakeGrow = 0.025;
+const shakeMin = 3;
+const shakeMax = 24;
+var shakeSize = shakeMin;
+var x;
+var y;
 
 func _ready():
-	set_process_input(true)
-	connect("mouse_entered", self, "_mouse_entered")
-	connect("mouse_exited", self, "_mouse_exited")
+	x = self.rect_global_position.x;
+	y = self.rect_global_position.y;
 
-func _mouse_entered():
-	print_debug("hi mom")
-	add_color_override("font_color", Color("#ff2f2f"))
-
-func _mouse_exited():
-	add_color_override("font_color", Color("#9a0256"))
-	
+func _process(delta):
+	if(self.is_hovered()):
+		self.rect_global_position.x = randf()*shakeSize-shakeSize/2+x;
+		self.rect_global_position.y = randf()*shakeSize-shakeSize/2+y;
+		if(shakeSize<shakeMax):
+			shakeSize += shakeGrow;
+	else:
+		shakeSize = shakeMin;
+		self.rect_global_position.x = x;
+		self.rect_global_position.y = y;

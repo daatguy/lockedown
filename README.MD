@@ -1,1 +1,1 @@
-All rights reserved. Copyright Henry Schneider 2020
+All rights reserved. Copyright Henry Schneider, Kai Hoop, Charlie Arleth, Austin Chang, and Nathaniel Fitzenrider 2020. The prior 4 parties reserve the right to remove Nathaniel's contibutor status as this weekend progresses (April 3-6, 2020).

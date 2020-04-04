@@ -1,14 +1,23 @@
 extends "res://MainMenuButton.gd"
 
 signal play_displayed
+var time = 0;
+var title = false;
 
 func _ready():
 	._ready();
 	get_node("../../Title").connect("displayed", self, "_on_Title_displayed");
 
 func _on_Title_displayed():
-	show();
+	title = true;
 
+func _process(delta):
+	if(title && time<0.8):
+		time += delta
+	elif(title && time>=0.8):
+		show()
+		title = false
+	
 func _get_max_text():
 	return "play game";
 

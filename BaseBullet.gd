@@ -10,9 +10,9 @@ func _ready():
 	connect("body_entered", self, "_on_self_body_entered")
 
 func set_velocity(v):
-	direction = v.angle()
-	$AnimatedSprite.rotation = direction
 	velocity = v
+	direction = fposmod(floor(rad2deg(-velocity.angle())/45),8)
+	$AnimatedSprite.frame = direction
 
 #since Player doen't use delta, I suppose we may as well make
 #everything FPS-based until when we may decide to fix that

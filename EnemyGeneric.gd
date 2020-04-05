@@ -17,9 +17,9 @@ func shoot(v, reach):
 	bullet.reach = 1200
 
 func shoot_angle(speed, angle, reach):
-	var v = Vector2(speed, 0)
+	var v = Vector2(-speed, 0)
 	v = v.rotated(angle)
 	shoot(v, reach)
 	
 func angle_to_player():
-	return PI + position.angle_to_point($"../Player".position)
+	return position.angle_to_point($"../Player".position)

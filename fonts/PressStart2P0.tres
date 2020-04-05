@@ -3,5 +3,6 @@
 [ext_resource path="res://fonts/PressStart2P-vaV7.ttf" type="DynamicFontData" id=1]
 
 [resource]
+size = 24
 extra_spacing_char = 32
 font_data = ExtResource( 1 )

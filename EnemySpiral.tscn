@@ -6,3 +6,10 @@
 [node name="EnemySpiral" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 seconds_per_shot = 0.5
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( 0, 352 )
+
+[node name="AnimatedSprite" parent="." index="1"]
+position = Vector2( 0, 144 )
+animation = "spin"

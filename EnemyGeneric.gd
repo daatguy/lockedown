@@ -5,11 +5,13 @@ export (float) var seconds_per_shot = 1
 var pitch;
 var pitchVariation = 0.3
 var sightRange = 800;
+var z_offset = 99;
 
 func _ready():
 	pitch = get_node("ShootSound").pitch_scale;
 
 func _process(delta):
+	z_index = z_offset+position[1]*0.1
 	time += delta
 	if(time > seconds_per_shot):
 		time = fmod(time, seconds_per_shot)

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shadow_top.png-0db7ec5597f4b24a63fda137eab9c697.stex"
+path="res://.import/turret.png-40695d9cca6c50c87204953ec994d732.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/shadow_top.png"
-dest_files=[ "res://.import/shadow_top.png-0db7ec5597f4b24a63fda137eab9c697.stex" ]
+source_file="res://sprites/turret.png"
+dest_files=[ "res://.import/turret.png-40695d9cca6c50c87204953ec994d732.stex" ]
 
 [params]
 

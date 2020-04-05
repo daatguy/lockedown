@@ -1,13 +1,16 @@
 extends RigidBody2D
 var time = 0
-export (PackedScene) var Bullet
+export (PackedScene) var Bullet = preload("res://BaseBullet.tscn")
 export var seconds_per_shot = 1
 
 func _process(delta):
 	time += delta
 	if time > seconds_per_shot:
 		time = fmod(time, seconds_per_shot)
-		shoot_angle(300, angle_to_player(), 1200)
+		shoot_pattern()
+		
+func shoot_pattern():
+	shoot_angle(300, angle_to_player(), 1200)
 
 func shoot(v, reach):
 	var bullet = Bullet.instance()

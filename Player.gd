@@ -5,14 +5,20 @@ var direction = 0;
 var screen_size #this feels like it belongs somewhere else
 onready var fog = get_node("Camera2D/Fog")
 onready var sprite = get_node("AnimatedSprite")
+onready var healthBar = get_node("HealthBar")
 export var PlayerBullet = preload("res://PlayerBullet.tscn")
 var reload = 0;
 var firing = .25; #how many seconds it takes you to shoot a bullet
+var maxHealth = 4;
+var health = maxHealth
 
 func _ready():
 	screen_size = get_viewport_rect().size
 
 func _process(delta):
+	
+	healthBar.animation = str(health);
+	
 	if(reload < firing):
 		reload += delta;
 	z_index = 99+position[1]*0.1
@@ -40,8 +46,7 @@ func _process(delta):
 func _on_Bullet_hit(damage):
 	$"Camera2D".shakeAmount = 16;
 	$"PlayerHitFreeze".time = 0.1;
-	print("Hit for:")
-	print(damage)
+	health -= 1;
 	
 func _input(event):
 	if event is InputEventMouseButton && reload > firing:

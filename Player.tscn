@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://sprites/cock.png" type="Texture" id=2]
+[ext_resource path="res://sprites/tileset.png" type="Texture" id=2]
 [ext_resource path="res://Camera2D.gd" type="Script" id=3]
 [ext_resource path="res://sprites/shadow-sheet.png" type="Texture" id=4]
+[ext_resource path="res://PixelSprite.gd" type="Script" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
@@ -29,12 +30,20 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 32, 16, 16 )
+
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "default",
-"speed": 5.0
+"speed": 2.0
 } ]
 
 [sub_resource type="CircleShape2D" id=7]
@@ -59,12 +68,17 @@ frames = SubResource( 5 )
 animation = "wave"
 frame = 3
 playing = true
+script = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 4, 4 )
 frames = SubResource( 6 )
+frame = 1
+playing = true
+script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 16 )

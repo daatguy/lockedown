@@ -17,10 +17,7 @@ func _process(_delta):
 	shakeVector.x = (randf()-0.5)*shakeAmount;
 	shakeVector.y = (randf()-0.5)*shakeAmount;
 	
-	var pixelPos = get_global_transform().origin;
-	print(pixelPos.y);
-	print(fposmod(pixelPos.y-pixelSize/2,pixelSize));
-	print(pixelPos.y-fposmod(pixelPos.y,pixelSize));
-	position.x = -fposmod(pixelPos.x-pixelSize/2,pixelSize);
-	position.y = -fposmod(pixelPos.y-pixelSize/2,pixelSize);
+	var pixelPos = get_global_transform().origin
+	offset.x = -fposmod(pixelPos.x,pixelSize)/scale.x;
+	offset.y = -fposmod(pixelPos.y,pixelSize)/scale.y;
 	offset += shakeVector;

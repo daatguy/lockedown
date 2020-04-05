@@ -53,7 +53,6 @@ z_index = 100
 z_as_relative = false
 frames = SubResource( 22 )
 animation = "wave"
-frame = 2
 playing = true
 __meta__ = {
 "_editor_description_": ""

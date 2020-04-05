@@ -25,6 +25,10 @@ config/icon="res://sprites/cock.png"
 
 [display]
 
+window/size/width=1920
+window/size/height=1080
+window/size/resizable=false
+window/size/borderless=true
 window/size/fullscreen=true
 window/stretch/mode="viewport"
 
@@ -53,5 +57,6 @@ down={
 
 [rendering]
 
+quality/filters/anisotropic_filter_level=1
 environment/default_clear_color=Color( 0, 0.0823529, 0.207843, 1 )
 environment/default_environment="res://default_env.tres"

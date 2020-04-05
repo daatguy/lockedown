@@ -135,8 +135,8 @@ animations = [ {
 [node name="Main Menu" type="Node" parent="."]
 
 [node name="Title" type="AnimatedSprite" parent="Main Menu"]
-position = Vector2( 512, 196 )
-scale = Vector2( 2, 2 )
+position = Vector2( 960, 384 )
+scale = Vector2( 3, 3 )
 frames = SubResource( 22 )
 animation = "Start"
 frame = 20
@@ -164,10 +164,10 @@ volume_db = -24.0
 pitch_scale = 1.5
 
 [node name="Play" type="Button" parent="Main Menu/Main Menu Buttons"]
-margin_left = 257.0
-margin_top = 308.0
-margin_right = 769.0
-margin_bottom = 340.0
+margin_left = 704.0
+margin_top = 608.0
+margin_right = 1216.0
+margin_bottom = 640.0
 rect_rotation = -2.0
 mouse_default_cursor_shape = 2
 custom_styles/hover = SubResource( 23 )
@@ -192,10 +192,10 @@ volume_db = -16.0
 pitch_scale = 2.0
 
 [node name="Options" type="Button" parent="Main Menu/Main Menu Buttons"]
-margin_left = 384.0
-margin_top = 376.0
-margin_right = 640.0
-margin_bottom = 408.0
+margin_left = 832.0
+margin_top = 688.0
+margin_right = 1088.0
+margin_bottom = 720.0
 rect_rotation = 2.0
 mouse_default_cursor_shape = 2
 custom_styles/hover = SubResource( 27 )
@@ -220,10 +220,10 @@ volume_db = -16.0
 pitch_scale = 2.0
 
 [node name="Quit" type="Button" parent="Main Menu/Main Menu Buttons"]
-margin_left = 398.0
-margin_top = 452.0
-margin_right = 626.0
-margin_bottom = 484.0
+margin_left = 846.0
+margin_top = 768.0
+margin_right = 1074.0
+margin_bottom = 800.0
 rect_rotation = -1.0
 mouse_default_cursor_shape = 2
 custom_styles/pressed = SubResource( 31 )

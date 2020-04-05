@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://EnemyGeneric.tscn" type="PackedScene" id=3]
 [ext_resource path="res://OnLoad.gd" type="Script" id=4]
 [ext_resource path="res://TextCard.tscn" type="PackedScene" id=5]
-[ext_resource path="res://EnemyStar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://pausemenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://EnemyShotgun.tscn" type="PackedScene" id=7]
 [ext_resource path="res://EnemyMachinegun.tscn" type="PackedScene" id=8]
 [ext_resource path="res://EnemySpiral.tscn" type="PackedScene" id=9]
+[ext_resource path="res://EnemyStar.tscn" type="PackedScene" id=10]
 
 [node name="ingame" type="Node2D"]
 
@@ -30,14 +31,17 @@ position = Vector2( 1365.84, 221.084 )
 script = ExtResource( 4 )
 TextCard = ExtResource( 5 )
 
-[node name="EnemyStar" parent="." instance=ExtResource( 6 )]
+[node name="EnemyStar" parent="." instance=ExtResource( 10 )]
 
 [node name="EnemyShotgun" parent="." instance=ExtResource( 7 )]
 position = Vector2( 2250.17, 1011.83 )
-seconds_per_shot = 1.0
 
 [node name="EnemyMachinegun" parent="." instance=ExtResource( 8 )]
 position = Vector2( -2024.08, 1720.75 )
 
 [node name="EnemySpiral" parent="." instance=ExtResource( 9 )]
 position = Vector2( -2598.69, -323.655 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 6 )]

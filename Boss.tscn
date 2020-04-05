@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://boss hand.tres" type="SpriteFrames" id=1]
+
+[node name="Boss" type="Node2D"]
+
+[node name="Left Hand" type="AnimatedSprite" parent="."]
+scale = Vector2( 12, 12 )
+frames = ExtResource( 1 )
+animation = "idle"
+playing = true

@@ -8,6 +8,13 @@ func _process(delta): #everything else ignores delta ¯\_(ツ)_/¯
 	if ticks > ticks_per_shot:
 		ticks %= ticks_per_shot
 		shoot(Vector2(-10, 10))
+		shoot(Vector2(10, 10))
+		shoot(Vector2(-10, -10))
+		shoot(Vector2(10, -10))
+		shoot(Vector2(0, 10))
+		shoot(Vector2(0, -10))
+		shoot(Vector2(-10, 0))
+		shoot(Vector2(10, 0))
 
 func shoot(v):
 	var bullet = Bullet.instance()

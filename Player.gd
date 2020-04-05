@@ -24,7 +24,7 @@ func _process(delta):
 		direction = fposmod(floor(rad2deg(-velocity.angle())/45),8);
 		if(velocity.y>0 || (velocity.y==0 && velocity.x<0)):
 			direction += 1
-		print(direction);
+		#print(direction);
 		sprite.animation = "walk"+str(direction)
 	else:
 		sprite.animation = "idle"+str(direction)

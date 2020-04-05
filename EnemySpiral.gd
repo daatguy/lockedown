@@ -14,3 +14,7 @@ func shoot_pattern():
 		bullet_velocity = bullet_velocity.rotated(-PI/4)
 		get_node("ShootSound").pitch_scale = pitch-pitchVariation/2+pitchVariation*randf();
 		get_node("ShootSound").play();
+
+func move_pattern():
+	chase(0);
+	#This is just a placeholder until we come up with movement patterns for these enemies

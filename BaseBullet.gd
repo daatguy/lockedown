@@ -12,7 +12,7 @@ func _ready():
 func set_velocity(v):
 	velocity = v
 	direction = fposmod(floor(rad2deg(-velocity.angle())/45),8);
-	if(velocity.y>0 || (velocity.y==0 && velocity.x<0)):
+	if(velocity.y>0):
 		direction += 1
 	$AnimatedSprite.frame = direction
 

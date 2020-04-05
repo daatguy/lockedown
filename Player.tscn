@@ -31,7 +31,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=6]
 radius = 8.0
 
 [node name="Player" type="KinematicBody2D"]
@@ -53,7 +53,7 @@ z_index = 100
 z_as_relative = false
 frames = SubResource( 5 )
 animation = "wave"
-frame = 2
+frame = 1
 playing = true
 script = ExtResource( 5 )
 __meta__ = {
@@ -70,5 +70,5 @@ script = ExtResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 16 )
 scale = Vector2( 4, 4 )
-shape = SubResource( 9 )
+shape = SubResource( 6 )
 script = ExtResource( 6 )

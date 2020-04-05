@@ -30,3 +30,7 @@ func _process(delta):
 		sprite.animation = "idle"+str(direction)
 	if(!test_move(transform,velocity * delta)):
 		position += velocity * delta
+
+func _on_Bullet_hit(damage):
+	print("Hit for:")
+	print(damage)

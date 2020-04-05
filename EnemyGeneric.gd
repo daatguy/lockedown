@@ -15,7 +15,7 @@ onready var sprite = get_node("AnimatedSprite")
 func _ready():
 	pitch = get_node("ShootSound").pitch_scale;
 	direction = floor(rand_range(0,8))
-	$Area2D.connect("area_entered", self, "_on_Area2D_area_entered")
+	#$Area2D.connect("area_entered", self, "_on_Area2D_area_entered")
 	
 func _process(delta):
 	z_index = z_offset+position[1]*0.1

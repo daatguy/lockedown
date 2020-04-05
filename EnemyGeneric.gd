@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends KinematicBody2D
 var time = 0
 export (PackedScene) var Bullet = preload("res://BaseBullet.tscn")
 export (float) var seconds_per_shot = 1
@@ -25,7 +25,7 @@ func shoot_pattern():
 func shoot(v, reach, damage):
 	var bullet = Bullet.instance()
 	$"..".add_child(bullet)
-	bullet.position = position + v.normalized()*96;
+	bullet.position = position + v.normalized()*128;
 	bullet.velocity = v
 	bullet.reach = reach
 	bullet.damage = damage

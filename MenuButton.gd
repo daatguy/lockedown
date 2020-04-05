@@ -24,8 +24,8 @@ func _pressed():
 	clickSound.play()
 
 func _ready():
-	x = self.rect_position.x
-	y = self.rect_position.y
+	x = self.rect_global_position.x
+	y = self.rect_global_position.y
 	maxText = text
 	hide()
 
@@ -35,8 +35,8 @@ func _process(_delta):
 		hoverSound.playing = true
 		hoverSound.pitch_scale = 1+(self.shakeSize-shakeMin)/shakeMax
 		hoverSound.volume_db = vol+gain*(self.shakeSize-shakeMin)/shakeMax
-		self.rect_position.x = randf()*shakeSize-shakeSize/2+x
-		self.rect_position.y = randf()*shakeSize-shakeSize/2+y
+		self.rect_global_position.x = randf()*shakeSize-shakeSize/2+x
+		self.rect_global_position.y = randf()*shakeSize-shakeSize/2+y
 		if(shakeSize<shakeMax):
 			self.shakeSize += shakeGrow
 	elif(wasHovered):
@@ -45,8 +45,8 @@ func _process(_delta):
 		hoverSound.pitch_scale = 1
 		hoverSound.volume_db = vol
 		self.shakeSize = shakeMin
-		self.rect_position.x = x
-		self.rect_position.y = y
+		self.rect_global_position.x = x
+		self.rect_global_position.y = y
 
 	#Texty things
 

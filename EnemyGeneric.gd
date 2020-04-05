@@ -10,19 +10,20 @@ func _process(delta):
 		shoot_pattern()
 		
 func shoot_pattern():
-	shoot_angle(300, angle_to_player(), 1200)
+	shoot_angle(300, angle_to_player(), 1200, 37)
 
-func shoot(v, reach):
+func shoot(v, reach, damage):
 	var bullet = Bullet.instance()
 	$"..".add_child(bullet)
 	bullet.position = position
 	bullet.velocity = v
 	bullet.reach = 1200
+	bullet.damage = damage
 
-func shoot_angle(speed, angle, reach):
+func shoot_angle(speed, angle, reach, damage):
 	var v = Vector2(-speed, 0)
 	v = v.rotated(angle)
-	shoot(v, reach)
+	shoot(v, reach, damage)
 	
 func angle_to_player():
 	return position.angle_to_point($"../Player".position)

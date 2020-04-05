@@ -26,7 +26,7 @@ func _process(delta):
 		about_to_pause = false
 
 func _get_max_text():
-	return "play game"
+	return "resume"
 
 func _on_finished_text():
 	emit_signal("resume_displayed")

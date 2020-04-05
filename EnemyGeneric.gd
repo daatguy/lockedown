@@ -1,20 +1,20 @@
 extends RigidBody2D
-var ticks = 0 #make time in future?
+var time = 0
 export (PackedScene) var Bullet
-export var ticks_per_shot = 30
+export var seconds_per_shot = 1
 
-func _process(delta): #everything else ignores delta ¯\_(ツ)_/¯
-	ticks += 1
-	if ticks > ticks_per_shot:
-		ticks %= ticks_per_shot
-		shoot(Vector2(-10, 10))
-		shoot(Vector2(10, 10))
-		shoot(Vector2(-10, -10))
-		shoot(Vector2(10, -10))
-		shoot(Vector2(0, 10))
-		shoot(Vector2(0, -10))
-		shoot(Vector2(-10, 0))
-		shoot(Vector2(10, 0))
+func _process(delta):
+	time += delta
+	if time > seconds_per_shot:
+		time = fmod(time, seconds_per_shot)
+		shoot(Vector2(-300, 300))
+		shoot(Vector2(300, 300))
+		shoot(Vector2(-300, -300))
+		shoot(Vector2(300, -300))
+		shoot(Vector2(0, 300))
+		shoot(Vector2(0, -300))
+		shoot(Vector2(-300, 0))
+		shoot(Vector2(300, 0))
 
 func shoot(v):
 	var bullet = Bullet.instance()

@@ -16,11 +16,9 @@ func set_velocity(v):
 		direction += 1
 	$AnimatedSprite.frame = direction
 
-#since Player doen't use delta, I suppose we may as well make
-#everything FPS-based until when we may decide to fix that
+
 func _process(delta):
-	position += velocity
-	#something something hit
+	position += velocity * delta
 
 func _on_self_body_entered(body):
 	if body == $"../Player":

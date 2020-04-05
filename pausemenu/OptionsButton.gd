@@ -8,6 +8,11 @@ func _get_max_text():
 func _ready():
 	._ready()
 	get_node("../Resume").connect("resume_displayed", self, "_on_resume_displayed")
+	self.owner.connect("about_to_show", self, "_on_PauseMenu_about_to_show")
+
+func _on_PauseMenu_about_to_show():
+	hide()
+	textLength = 0
 
 func _on_resume_displayed():
 	show()

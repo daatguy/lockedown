@@ -9,7 +9,9 @@ func _ready():
 	self.owner.connect("about_to_show", self, "_on_PauseMenu_about_to_show")
 
 func _on_PauseMenu_about_to_show():
+	hide()
 	about_to_pause = true
+	textLength = 0
 
 func _pressed():
 	._pressed()

@@ -11,8 +11,8 @@
 [ext_resource path="res://fonts/PressStart2P.tres" type="DynamicFont" id=9]
 [ext_resource path="res://sounds/button_hover.wav" type="AudioStream" id=10]
 [ext_resource path="res://sounds/options_load.wav" type="AudioStream" id=11]
+[ext_resource path="res://pausemenu/QuitButton.gd" type="Script" id=12]
 [ext_resource path="res://pausemenu/PauseMenu.gd" type="Script" id=13]
-[ext_resource path="res://QuitButton.gd" type="Script" id=14]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -170,7 +170,7 @@ custom_colors/font_color_hover = Color( 1, 0.184314, 0.184314, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 text = "quit"
 flat = true
-script = ExtResource( 14 )
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -5,31 +5,31 @@
 [ext_resource path="res://Camera2D.gd" type="Script" id=3]
 [ext_resource path="res://sprites/shadow-sheet.png" type="Texture" id=4]
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 256, 150 )
 
-[sub_resource type="AtlasTexture" id=19]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 4 )
 region = Rect2( 256, 0, 256, 150 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 4 )
 region = Rect2( 512, 0, 256, 150 )
 
-[sub_resource type="AtlasTexture" id=21]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 4 )
 region = Rect2( 768, 0, 256, 150 )
 
-[sub_resource type="SpriteFrames" id=22]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "wave",
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
@@ -37,7 +37,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=23]
+[sub_resource type="CircleShape2D" id=7]
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -50,18 +50,18 @@ script = ExtResource( 3 )
 scale = Vector2( 4, 4 )
 z_index = 100
 z_as_relative = false
-frames = SubResource( 22 )
+frames = SubResource( 5 )
 animation = "wave"
-frame = 2
+frame = 3
 playing = true
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 1 )
+frames = SubResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 16 )
 scale = Vector2( 2, 2 )
-shape = SubResource( 23 )
+shape = SubResource( 7 )

@@ -9,6 +9,7 @@ var z_offset = 99;
 var velocity : Vector2
 var direction;
 var shooting = false
+var health = 2 setget set_health
 onready var sprite = get_node("AnimatedSprite")
 
 func _ready():
@@ -62,3 +63,8 @@ func angle_to_player():
 	
 func angle_8_to_player():
 	return deg2rad(floor(rad2deg(angle_to_player())/45+0.5)*45)
+
+func set_health(h):
+	health = h
+	if h <= 0:
+		queue_free()

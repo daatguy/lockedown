@@ -12,7 +12,11 @@ func _ready():
 func _process(_delta):
 	var distance = $"../Player".global_position.distance_to(global_position);
 	if(seconds_per_shot == between_volley_shots):
-		$"AnimatedSprite".animation = "shoot"+str(floor(rad2deg(angle_to_player())/45+3.5))
+		var dir = floor(rad2deg(angle_to_player())/45+3.5)
+		if(dir==-1):
+			dir = 0;
+		print(dir)
+		$"AnimatedSprite".animation = "shoot"+str(dir)
 		$"AnimatedSprite".speed_scale = 1;
 	elif(time>1):
 		$"AnimatedSprite".animation = "crank"

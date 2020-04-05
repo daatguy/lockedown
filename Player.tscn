@@ -91,6 +91,7 @@ z_index = 4096
 z_as_relative = false
 frames = SubResource( 11 )
 animation = "wave"
+frame = 1
 playing = true
 script = ExtResource( 5 )
 __meta__ = {
@@ -101,7 +102,6 @@ __meta__ = {
 scale = Vector2( 12, 12 )
 frames = ExtResource( 2 )
 animation = "idle0"
-frame = 1
 playing = true
 script = ExtResource( 5 )
 

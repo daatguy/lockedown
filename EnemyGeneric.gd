@@ -6,16 +6,34 @@ var pitch;
 var pitchVariation = 0.3
 var sightRange = 800;
 var z_offset = 99;
+var velocity : Vector2
+var direction;
+var shooting = false
+onready var sprite = get_node("AnimatedSprite")
 
 func _ready():
 	pitch = get_node("ShootSound").pitch_scale;
-
+	direction = floor(rand_range(0,8))
+	
 func _process(delta):
 	z_index = z_offset+position[1]*0.1
 	time += delta
 	if(time > seconds_per_shot):
 		time = fmod(time, seconds_per_shot)
 		shoot_pattern()
+	direction = floor(rad2deg(angle_to_player())/45+3.5)
+	if(direction==-1):
+		direction = 0;
+	if velocity.length() > 0:
+		sprite.animation = "walk"+str(direction)
+	else:
+		if(shooting):
+			sprite.animation = "shoot"+str(direction)
+			if(sprite.frame==1):
+				shooting = false
+		else:
+			sprite.animation = "idle"+str(direction)
+		
 		
 func shoot_pattern():
 	var distance = $"../Player".global_position.distance_to(global_position);
@@ -31,6 +49,7 @@ func shoot(v, reach, damage):
 	bullet.velocity = v
 	bullet.reach = reach
 	bullet.damage = damage
+	shooting = true
 	return bullet
 
 func shoot_angle(speed, angle, reach, damage):

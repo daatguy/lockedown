@@ -32,6 +32,7 @@ func _process(delta):
 			if(sprite.frame==1):
 				shooting = false
 		else:
+			#warning-ignore:warning_id 
 			sprite.animation = "idle"+str(direction)
 		
 		

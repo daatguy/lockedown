@@ -5,13 +5,14 @@
 [ext_resource path="res://EnemyGeneric.tscn" type="PackedScene" id=3]
 [ext_resource path="res://OnLoad.gd" type="Script" id=4]
 [ext_resource path="res://TextCard.tscn" type="PackedScene" id=5]
-[ext_resource path="res://pausemenu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ingame.gd" type="Script" id=6]
 [ext_resource path="res://EnemyShotgun.tscn" type="PackedScene" id=7]
 [ext_resource path="res://EnemyMachinegun.tscn" type="PackedScene" id=8]
 [ext_resource path="res://EnemySpiral.tscn" type="PackedScene" id=9]
 [ext_resource path="res://EnemyStar.tscn" type="PackedScene" id=10]
 
 [node name="ingame" type="Node2D"]
+pause_mode = 1
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 12, 12 )
@@ -42,6 +43,7 @@ position = Vector2( -2024.08, 1720.75 )
 [node name="EnemySpiral" parent="." instance=ExtResource( 9 )]
 position = Vector2( 4032, 1536 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 6 )]
+[node name="PauseController" type="Node" parent="."]
+pause_mode = 2
+process_priority = 1
+script = ExtResource( 6 )

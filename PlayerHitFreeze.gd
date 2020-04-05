@@ -12,7 +12,8 @@ func _process(delta):
 		return
 	elif(time<0):
 		time = 0
-	get_tree().paused = false
+	if(!get_parent().get_parent().get_node("PauseController").paused==true):
+		get_tree().paused = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

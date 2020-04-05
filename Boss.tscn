@@ -1,11 +1,59 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://boss hand.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://sprites/boss_head.png" type="Texture" id=2]
+[ext_resource path="res://sprites/boss_body.png" type="Texture" id=3]
+[ext_resource path="res://sprites/sword.png" type="Texture" id=4]
+[ext_resource path="res://sprites/staff.png" type="Texture" id=5]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 64, 85 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+} ]
 
 [node name="Boss" type="Node2D"]
 
 [node name="Left Hand" type="AnimatedSprite" parent="."]
+position = Vector2( -1344, -768 )
 scale = Vector2( 12, 12 )
 frames = ExtResource( 1 )
-animation = "idle"
+animation = "closed"
+frame = 1
 playing = true
+
+[node name="Sword" type="Sprite" parent="Left Hand"]
+position = Vector2( 16, -120 )
+z_index = -15
+texture = ExtResource( 4 )
+
+[node name="Right Hand" type="AnimatedSprite" parent="."]
+position = Vector2( 1344, -768 )
+scale = Vector2( 12, 12 )
+frames = ExtResource( 1 )
+animation = "closed"
+frame = 1
+playing = true
+flip_h = true
+
+[node name="Sprite" type="Sprite" parent="Right Hand"]
+position = Vector2( -16, -64 )
+z_index = -15
+texture = ExtResource( 5 )
+
+[node name="Head" type="AnimatedSprite" parent="."]
+position = Vector2( 5.60519e-45, -1536 )
+scale = Vector2( 12, 12 )
+frames = SubResource( 2 )
+playing = true
+
+[node name="Body" type="Sprite" parent="Head"]
+position = Vector2( 0, 96 )
+z_index = -100
+texture = ExtResource( 3 )

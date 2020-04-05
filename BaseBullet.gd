@@ -1,6 +1,7 @@
 extends Area2D
 
 var velocity = Vector2() setget set_velocity
+var reach = 1200
 var direction = 0
 signal hit(damage)
 
@@ -18,7 +19,12 @@ func set_velocity(v):
 
 
 func _process(delta):
+	if reach <= 0:
+		hide()
+		$CollisionShape2D.set_deferred("disabled", true)
+		queue_free()
 	position += velocity * delta
+	reach -= velocity.length() * delta
 
 func _on_self_body_entered(body):
 	if body == $"../Player":

@@ -7,18 +7,19 @@ func _process(delta):
 	time += delta
 	if time > seconds_per_shot:
 		time = fmod(time, seconds_per_shot)
-		shoot_angle(300, angle_to_player())
+		shoot_angle(300, angle_to_player(), 1200)
 
-func shoot(v):
+func shoot(v, reach):
 	var bullet = Bullet.instance()
 	$"..".add_child(bullet)
 	bullet.position = position
 	bullet.velocity = v
+	bullet.reach = 1200
 
-func shoot_angle(speed, angle):
+func shoot_angle(speed, angle, reach):
 	var v = Vector2(speed, 0)
 	v = v.rotated(angle)
-	shoot(v)
+	shoot(v, reach)
 	
 func angle_to_player():
 	return PI + position.angle_to_point($"../Player".position)

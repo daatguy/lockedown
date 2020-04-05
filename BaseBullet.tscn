@@ -26,3 +26,5 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 2 )
+
+[node name="Visibility" type="VisibilityNotifier2D" parent="."]

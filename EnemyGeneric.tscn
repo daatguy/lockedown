@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://PixelSprite.gd" type="Script" id=1]
 [ext_resource path="res://sprites/cock.png" type="Texture" id=2]
 [ext_resource path="res://PixelScaleShape.gd" type="Script" id=3]
+[ext_resource path="res://EnemyGeneric.gd" type="Script" id=4]
+[ext_resource path="res://BaseBullet.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.0
@@ -17,6 +19,8 @@ animations = [ {
 
 [node name="EnemyGeneric" type="RigidBody2D"]
 gravity_scale = 0.0
+script = ExtResource( 4 )
+Bullet = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

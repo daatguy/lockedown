@@ -35,3 +35,7 @@ func shoot_pattern():
 		seconds_per_shot = between_volley_shots
 	shoot_angle(800, angle_to_player(), 1500, 10)
 	shots_taken += 1
+
+func move_pattern():
+	chase(0);
+	#This is just a placeholder until we come up with movement patterns for these enemies

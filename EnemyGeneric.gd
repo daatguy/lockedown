@@ -25,15 +25,16 @@ func shoot_pattern():
 func shoot(v, reach, damage):
 	var bullet = Bullet.instance()
 	$"..".add_child(bullet)
-	bullet.position = position
+	bullet.position = position + v.normalized()*96;
 	bullet.velocity = v
 	bullet.reach = reach
 	bullet.damage = damage
+	return bullet
 
 func shoot_angle(speed, angle, reach, damage):
 	var v = Vector2(-speed, 0)
 	v = v.rotated(angle)
-	shoot(v, reach, damage)
+	return shoot(v, reach, damage)
 	
 func angle_to_player():
 	return position.angle_to_point($"../Player".position)

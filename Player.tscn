@@ -49,11 +49,11 @@ script = ExtResource( 3 )
 
 [node name="Fog" type="AnimatedSprite" parent="Camera2D"]
 scale = Vector2( 12, 12 )
-z_index = 100
+z_index = 20
 z_as_relative = false
 frames = SubResource( 5 )
 animation = "wave"
-frame = 2
+frame = 1
 playing = true
 script = ExtResource( 5 )
 __meta__ = {
@@ -64,7 +64,6 @@ __meta__ = {
 scale = Vector2( 12, 12 )
 frames = ExtResource( 2 )
 animation = "idle0"
-frame = 1
 playing = true
 script = ExtResource( 5 )
 

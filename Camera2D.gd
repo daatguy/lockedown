@@ -1,6 +1,6 @@
 extends Camera2D
 
-const pixelSize = 4;
+const pixelSize = 12;
 var shakeAmount = 0;
 var shakeDecay = 0.65;
 

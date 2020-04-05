@@ -11,6 +11,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" parent="." index="1"]
 frames = ExtResource( 4 )
 animation = "idle"
+frame = 0
 offset = Vector2( 0, -8 )
 
 [node name="ShootSound" parent="." index="2"]

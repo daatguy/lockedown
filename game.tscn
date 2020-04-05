@@ -164,9 +164,9 @@ volume_db = -24.0
 pitch_scale = 1.5
 
 [node name="Play" type="Button" parent="Main Menu/Main Menu Buttons"]
-margin_left = 256.0
+margin_left = 257.0
 margin_top = 308.0
-margin_right = 768.0
+margin_right = 769.0
 margin_bottom = 340.0
 rect_rotation = -2.0
 mouse_default_cursor_shape = 2

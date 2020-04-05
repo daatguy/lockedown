@@ -5,17 +5,31 @@ export (float) var seconds_per_shot = 1
 var pitch;
 var pitchVariation = 0.3
 var sightRange = 800;
-var z_offset = 99;
+var dir = Vector2(0,0);
+
+func move_pattern():
+	var distance = $"../Player".global_position.distance_to(global_position);
+	if(distance > 900):
+		chase(1);
+	elif(distance < 600):
+		chase(-3);
+		
 
 func _ready():
 	pitch = get_node("ShootSound").pitch_scale;
+	
+func chase(spd):
+	dir = Vector2(-spd, 0);
+	dir = dir.rotated(angle_to_player());
+	position += dir;
 
 func _process(delta):
-	z_index = z_offset+position[1]*0.1
+	move_pattern();
 	time += delta
 	if(time > seconds_per_shot):
 		time = fmod(time, seconds_per_shot)
 		shoot_pattern()
+		
 		
 func shoot_pattern():
 	var distance = $"../Player".global_position.distance_to(global_position);
@@ -31,7 +45,9 @@ func shoot(v, reach, damage):
 	bullet.velocity = v
 	bullet.reach = reach
 	bullet.damage = damage
+	dir = v.normalized();
 	return bullet
+	
 
 func shoot_angle(speed, angle, reach, damage):
 	var v = Vector2(-speed, 0)

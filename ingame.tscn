@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tileset.tres" type="TileSet" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://EnemyMachinegun.tscn" type="PackedScene" id=8]
 [ext_resource path="res://EnemySpiral.tscn" type="PackedScene" id=9]
 [ext_resource path="res://EnemyStar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://BaseBullet.tscn" type="PackedScene" id=11]
 
 [node name="ingame" type="Node2D"]
 
@@ -41,6 +42,7 @@ position = Vector2( -2024.08, 1720.75 )
 
 [node name="EnemySpiral" parent="." instance=ExtResource( 9 )]
 position = Vector2( 4032, 1536 )
+Bullet = ExtResource( 11 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

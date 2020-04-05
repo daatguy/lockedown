@@ -6,6 +6,7 @@ var pitch;
 var pitchVariation = 0.3
 var sightRange = 800;
 var dir = Vector2(0,0);
+var z_offset = 99;
 
 func move_pattern():
 	var distance = $"../Player".global_position.distance_to(global_position);
@@ -24,6 +25,7 @@ func chase(spd):
 	position += dir;
 
 func _process(delta):
+	z_index = z_offset+position[1]*0.1
 	move_pattern();
 	time += delta
 	if(time > seconds_per_shot):
@@ -60,3 +62,5 @@ func angle_to_player():
 func angle_8_to_player():
 	return deg2rad(floor(rad2deg(angle_to_player())/45+0.5)*45)
 
+func _on_self_body_entered(body):
+	get_tree().quit();

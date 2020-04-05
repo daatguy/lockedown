@@ -5,11 +5,16 @@ var direction = 0;
 var screen_size #this feels like it belongs somewhere else
 onready var fog = get_node("Camera2D/Fog")
 onready var sprite = get_node("AnimatedSprite")
+var Bullet = preload("res://PlayerBullet.tscn")
+var reload = 0;
+var firing = .25; #how many seconds it takes you to shoot a bullet
 
 func _ready():
 	screen_size = get_viewport_rect().size
 
 func _process(delta):
+	if(reload < firing):
+		reload += delta;
 	z_index = 99+position[1]*0.1
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("right"):
@@ -35,3 +40,24 @@ func _process(delta):
 func _on_Bullet_hit(damage):
 	print("Hit for:")
 	print(damage)
+
+
+func _input(event):
+	if event is InputEventMouseButton && reload > firing:
+		shoot_angle(2000,position.angle_to_point(get_global_mouse_position()),2000,37);
+		reload = 0;
+		
+		
+func shoot(v, reach, damage):
+	var bullet = Bullet.instance()
+	$"..".add_child(bullet)
+	bullet.position = position + v.normalized()*128;
+	bullet.velocity = v
+	bullet.reach = reach
+	bullet.damage = damage
+	return bullet
+
+func shoot_angle(speed, angle, reach, damage):
+	var v = Vector2(-speed, 0)
+	v = v.rotated(angle)
+	return shoot(v, reach, damage)

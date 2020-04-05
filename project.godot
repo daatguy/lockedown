@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="LOCKEDOWN"
-run/main_scene="res://game.tscn"
+run/main_scene="res://mainmenu.tscn"
 boot_splash/image="res://sprites/cock.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false

@@ -8,7 +8,7 @@ func _process(delta):
 	if time > seconds_per_shot:
 		time = fmod(time, seconds_per_shot)
 		shoot_pattern()
-		
+
 func shoot_pattern():
 	shoot_angle(300, angle_to_player(), 1200)
 
@@ -23,6 +23,6 @@ func shoot_angle(speed, angle, reach):
 	var v = Vector2(-speed, 0)
 	v = v.rotated(angle)
 	shoot(v, reach)
-	
+
 func angle_to_player():
 	return position.angle_to_point($"../Player".position)

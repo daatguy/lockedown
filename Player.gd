@@ -10,19 +10,19 @@ func _ready():
 	screen_size = get_viewport_rect().size
 
 func _process(delta):
-	var velocity = Vector2()
+	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("right"):
-		velocity.x += 1
+		velocity += Vector2.RIGHT
 	if Input.is_action_pressed("left"):
-		velocity.x -= 1
+		velocity += Vector2.LEFT
 	if Input.is_action_pressed("down"):
-		velocity.y += 1
+		velocity += Vector2.DOWN
 	if Input.is_action_pressed("up"):
-		velocity.y -= 1
+		velocity += Vector2.UP
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		direction = fposmod(floor(rad2deg(-velocity.angle())/45),8);
-		if(velocity.y>0 || (velocity.y==0 && velocity.x<0)):
+		if(0 < velocity.angle() && velocity.angle() <= PI): # ||velocity.y>0 || (velocity.y==0 && velocity.x<0)):
 			direction += 1
 		#print(direction);
 		sprite.animation = "walk"+str(direction)

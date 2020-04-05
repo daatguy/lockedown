@@ -1,0 +1,181 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://sprites/title.png" type="Texture" id=1]
+[ext_resource path="res://sounds/button_click.wav" type="AudioStream" id=2]
+[ext_resource path="res://sounds/play_game_load.wav" type="AudioStream" id=3]
+[ext_resource path="res://fonts/PressStart2P0.tres" type="DynamicFont" id=4]
+[ext_resource path="res://pausemenu/ResumeButton.gd" type="Script" id=5]
+[ext_resource path="res://sounds/quit_load.wav" type="AudioStream" id=6]
+[ext_resource path="res://fonts/PressStart2P1.tres" type="DynamicFont" id=7]
+[ext_resource path="res://pausemenu/OptionsButton.gd" type="Script" id=8]
+[ext_resource path="res://fonts/PressStart2P.tres" type="DynamicFont" id=9]
+[ext_resource path="res://sounds/button_hover.wav" type="AudioStream" id=10]
+[ext_resource path="res://sounds/options_load.wav" type="AudioStream" id=11]
+[ext_resource path="res://pausemenu/PauseMenu.gd" type="Script" id=13]
+[ext_resource path="res://QuitButton.gd" type="Script" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[node name="PauseMenu" type="Popup"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+popup_exclusive = true
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.00012207
+color = Color( 0, 0.0823529, 0.207843, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 528.696
+margin_top = 296.989
+margin_right = -239.304
+margin_bottom = -399.011
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 1 )
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pause buttons" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.00012207
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hover" type="AudioStreamPlayer" parent="Pause buttons"]
+stream = ExtResource( 10 )
+volume_db = -48.0
+
+[node name="Click" type="AudioStreamPlayer" parent="Pause buttons"]
+stream = ExtResource( 2 )
+volume_db = -24.0
+pitch_scale = 1.5
+
+[node name="Resume" type="Button" parent="Pause buttons"]
+anchor_left = 0.367
+anchor_top = 0.576
+anchor_right = 0.634
+anchor_bottom = 0.576
+margin_left = -0.640015
+margin_top = -14.08
+margin_right = -1.28003
+margin_bottom = 17.92
+rect_rotation = -2.0
+mouse_default_cursor_shape = 2
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.603922, 0.00784314, 0.337255, 1 )
+custom_colors/font_color_hover = Color( 1, 0.184314, 0.184314, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "resume"
+flat = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Load" type="AudioStreamPlayer" parent="Pause buttons/Resume"]
+stream = ExtResource( 3 )
+volume_db = -16.0
+pitch_scale = 2.0
+
+[node name="Options" type="Button" parent="Pause buttons"]
+anchor_left = 0.433
+anchor_top = 0.652
+anchor_right = 0.57
+anchor_bottom = 0.675
+margin_left = 0.639954
+margin_top = -16.16
+margin_right = 1.59985
+margin_bottom = -8.99994
+rect_rotation = 2.0
+mouse_default_cursor_shape = 2
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.603922, 0.00784314, 0.337255, 1 )
+custom_colors/font_color_hover = Color( 1, 0.184314, 0.184314, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "options"
+flat = true
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Load" type="AudioStreamPlayer" parent="Pause buttons/Options"]
+stream = ExtResource( 11 )
+volume_db = -16.0
+pitch_scale = 2.0
+
+[node name="Quit" type="Button" parent="Pause buttons"]
+anchor_left = 0.441
+anchor_top = 0.726
+anchor_right = 0.56
+anchor_bottom = 0.737
+margin_left = -0.720032
+margin_top = -16.08
+margin_right = -1.20007
+margin_bottom = 4.04004
+rect_rotation = -1.0
+mouse_default_cursor_shape = 2
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0.603922, 0.00784314, 0.337255, 1 )
+custom_colors/font_color_hover = Color( 1, 0.184314, 0.184314, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "quit"
+flat = true
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Load" type="AudioStreamPlayer" parent="Pause buttons/Quit"]
+stream = ExtResource( 6 )
+volume_db = -16.0
+pitch_scale = 2.0

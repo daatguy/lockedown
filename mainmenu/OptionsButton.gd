@@ -1,10 +1,10 @@
-extends "res://MainMenuButton.gd"
+extends "res://MenuButton.gd"
 
 signal options_displayed
 
 func _get_max_text():
 	return "options";
-	
+
 func _ready():
 	._ready()
 	get_node("../Play").connect("play_displayed", self, "_on_play_displayed")

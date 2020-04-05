@@ -9,8 +9,7 @@ var done = false;
 func _ready():
 	get_tree().paused = true;
 	get_node("CanvasLayer").get_node("Text").text = textContent
-	pass
-	
+
 func _process(delta):
 	timer += delta
 	if(timer>maxTimer && !done):
@@ -19,5 +18,6 @@ func _process(delta):
 		done = true;
 		get_node("CanvasLayer").get_node("ColorRect").hide()
 		get_node("CanvasLayer").get_node("Text").hide()
+
 	if(done && sound.get_playback_position()>=1):
 		queue_free()

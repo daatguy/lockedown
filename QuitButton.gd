@@ -1,4 +1,4 @@
-extends "res://MainMenuButton.gd"
+extends "res://MenuButton.gd"
 
 func _ready():
 	._ready()
@@ -7,7 +7,7 @@ func _ready():
 
 func _get_max_text():
 	return "quit";
-	
+
 func _pressed():
 	._pressed();
 	get_tree().quit();

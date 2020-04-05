@@ -1,4 +1,4 @@
-extends "res://MainMenuButton.gd"
+extends "res://MenuButton.gd"
 
 signal play_displayed
 var time = 0;
@@ -21,7 +21,7 @@ func _process(delta):
 	elif(title && time>=0.8):
 		show()
 		title = false
-	
+
 func _get_max_text():
 	return "play game";
 

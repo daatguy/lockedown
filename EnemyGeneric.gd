@@ -1,7 +1,7 @@
 extends RigidBody2D
 var time = 0
 export (PackedScene) var Bullet = preload("res://BaseBullet.tscn")
-export var seconds_per_shot = 1
+export (float) var seconds_per_shot = 1
 
 func _process(delta):
 	time += delta

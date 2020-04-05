@@ -15,3 +15,4 @@ offset = Vector2( 0, -8 )
 
 [node name="ShootSound" parent="." index="2"]
 stream = ExtResource( 3 )
+volume_db = -6.0

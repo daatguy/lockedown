@@ -33,5 +33,7 @@ func _process(delta):
 		position += velocity * delta
 
 func _on_Bullet_hit(damage):
+	$"Camera2D".shakeAmount = 16;
+	$"PlayerHitFreeze".time = 0.1;
 	print("Hit for:")
 	print(damage)

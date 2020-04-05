@@ -15,3 +15,13 @@ func shoot_pattern():
 		bullet2.position -= bulletOffset
 		get_node("ShootSound").pitch_scale = pitch-pitchVariation/2+pitchVariation*randf();
 		get_node("ShootSound").play();
+
+func move_pattern():
+	seconds_per_shot = 5;
+	var distance = $"../Player".global_position.distance_to(global_position);
+	if(time > seconds_per_shot*.8):
+		chase(6);
+	elif(distance < 600):
+		chase(-2);
+	elif(distance > 650):
+		chase(2);

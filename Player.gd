@@ -14,7 +14,7 @@ var health = maxHealth
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	$RayCast2D.add_exception(self)
+	#$RayCast2D.add_exception(self)
 
 func _process(delta):
 	
@@ -47,7 +47,18 @@ func _process(delta):
 func _on_Bullet_hit(damage):
 	health -= 1;
 	if(health==0):
-		get_tree().change_scene("dead.tscn")
+		# Remove the current level
+		
+		var root = get_tree().get_root()
+		# Add the next level
+		var next_level_resource = load("res://dead.tscn")
+		var next_level = next_level_resource.instance()
+		next_level.direction = direction;
+		root.add_child(next_level)
+		
+		var level = root.get_node("ingame")
+		root.remove_child(level)
+		level.call_deferred("free")
 	else:
 		$"Camera2D".shakeAmount = 16;
 		$"PlayerHitFreeze".time = 0.1;

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://EnemyGeneric.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://TextCard.tscn" type="PackedScene" id=4]
+[ext_resource path="res://EnemyMachinegun.tscn" type="PackedScene" id=5]
 [ext_resource path="res://OnLoad.gd" type="Script" id=9]
 [ext_resource path="res://ingame.gd" type="Script" id=10]
 
@@ -33,3 +34,6 @@ TextCard = ExtResource( 4 )
 pause_mode = 2
 process_priority = 1
 script = ExtResource( 10 )
+
+[node name="EnemyMachinegun" parent="." instance=ExtResource( 5 )]
+position = Vector2( 807.28, 599.97 )

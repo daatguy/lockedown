@@ -66,13 +66,12 @@ func _on_Bullet_hit(damage):
 	
 func _input(event):
 	if event is InputEventMouseButton && reload > firing:
-		print("shot")
-		var angle = position.angle_to_point(get_global_mouse_position())
+		var angle = get_global_position().angle_to_point(get_global_mouse_position())
 		#shoot_angle(1000, angle, 500,1)
 		#shoot_raycast(angle)
 		reload = 0
 		var ray = Ray.instance()
-		ray.rotation = angle + PI
+		ray.rotation = angle+PI
 		add_child(ray)
 
 		

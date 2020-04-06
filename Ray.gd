@@ -2,6 +2,10 @@ extends Area2D
 
 var timer = 0;
 export var EnemyGeneric = preload("res://EnemyGeneric.gd")
+export var EnemySpiral = preload("res://EnemySpiral.gd")
+
+func _ready():
+	$"Sound".play()
 
 func _process(delta):
 	timer += delta
@@ -9,5 +13,6 @@ func _process(delta):
 	if timer > .5:
 		queue_free()
 	for body in get_overlapping_bodies():
-		if body is EnemyGeneric:
+		if body is EnemyGeneric && !(body is EnemySpiral):
 			body.queue_free()
+		$"Sound2".play()

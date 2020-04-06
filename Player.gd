@@ -72,7 +72,8 @@ func _input(event):
 		#shoot_raycast(angle)
 		reload = 0
 		var ray = Ray.instance()
-		ray.rotation = angle
+		ray.rotation = angle + PI
+		add_child(ray)
 
 		
 func shoot(v, reach, damage):

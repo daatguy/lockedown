@@ -4,13 +4,14 @@
 [ext_resource path="res://Ray.gd" type="Script" id=2]
 [ext_resource path="res://sounds/shoot_0.wav" type="AudioStream" id=3]
 
-[sub_resource type="SegmentShape2D" id=1]
-b = Vector2( 1920, 0 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 960, 24 )
 
 [node name="Ray" type="Area2D"]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 960, 0 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -11,3 +11,4 @@ func _process(delta):
 	for body in get_overlapping_bodies():
 		if body is EnemyGeneric:
 			body.queue_free()
+		print(body);

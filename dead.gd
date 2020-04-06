@@ -15,6 +15,7 @@ func _process(delta):
 		var menu = MainMenu.instance()
 		add_child(menu)
 		menud = true;
+	$"AnimatedSprite".modulate = Color(1,1,1,1.3-timer*0.3)
 
 func set_direction(direction):
 	self.direction = int(floor(direction))

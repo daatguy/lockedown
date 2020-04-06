@@ -88,12 +88,10 @@ position = Vector2( 8814.69, 4828.96 )
 position = Vector2( 8814.69, 3713.27 )
 
 [node name="EnemyMachinegun" parent="." instance=ExtResource( 8 )]
-position = Vector2( 5247.92, 146.262 )
-scale = Vector2( -1.08, 1 )
+position = Vector2( 5223.28, 142.877 )
 
 [node name="EnemyMachinegun2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 7199.24, 4345.31 )
-scale = Vector2( -1.08, 1 )
+position = Vector2( 7199.24, 4439.97 )
 
 [node name="EnemySpiral" parent="." instance=ExtResource( 9 )]
 position = Vector2( 7199.24, -465.468 )

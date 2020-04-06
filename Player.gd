@@ -14,6 +14,7 @@ var health = maxHealth
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	$RayCast2D.add_exception(self)
 
 func _process(delta):
 	
@@ -53,8 +54,20 @@ func _on_Bullet_hit(damage):
 	
 func _input(event):
 	if event is InputEventMouseButton && reload > firing:
-		shoot_angle(1000, position.angle_to_point(get_global_mouse_position()),500,1)
+		var angle = position.angle_to_point(get_global_mouse_position())
+		#shoot_angle(1000, angle, 500,1)
+		shoot_raycast(angle)
 		reload = 0
+		
+func shoot_raycast(angle):
+	var to = Vector2(500, 0)
+	to = to.rotated(angle)
+	$RayCast2D.cast_to = to
+	$RayCast2D.force_raycast_update()
+	if ($RayCast2D.is_colliding()):
+		print("hitted")
+	else:
+		print("miss")
 		
 func shoot(v, reach, damage):
 	var bullet = PlayerBullet.instance()

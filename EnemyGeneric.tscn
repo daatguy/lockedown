@@ -7,7 +7,7 @@
 [ext_resource path="res://sounds/shoot_4.wav" type="AudioStream" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 8.0
+radius = 12.0
 
 [node name="EnemyGeneric" type="KinematicBody2D"]
 script = ExtResource( 4 )

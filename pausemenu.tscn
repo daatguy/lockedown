@@ -40,8 +40,7 @@ pause_mode = 2
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.948
-margin_right = 1.94812
+margin_right = 0.00012207
 color = Color( 0, 0.0823529, 0.207843, 1 )
 __meta__ = {
 "_edit_use_anchors_": false

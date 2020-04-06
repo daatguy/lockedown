@@ -45,9 +45,12 @@ func _process(delta):
 		position += velocity * delta
 
 func _on_Bullet_hit(damage):
-	$"Camera2D".shakeAmount = 16;
-	$"PlayerHitFreeze".time = 0.1;
 	health -= 1;
+	if(health==0):
+		get_tree().change_scene("dead.tscn")
+	else:
+		$"Camera2D".shakeAmount = 16;
+		$"PlayerHitFreeze".time = 0.1;
 	
 func _input(event):
 	if event is InputEventMouseButton && reload > firing:

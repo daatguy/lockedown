@@ -7,6 +7,7 @@ onready var fog = get_node("Camera2D/Fog")
 onready var sprite = get_node("AnimatedSprite")
 onready var healthBar = get_node("HealthBar")
 export var PlayerBullet = preload("res://PlayerBullet.tscn")
+export var Ray = preload("res://Ray.tscn")
 var reload = 0;
 var firing = .25; #how many seconds it takes you to shoot a bullet
 var maxHealth = 4;
@@ -65,11 +66,13 @@ func _on_Bullet_hit(damage):
 	
 func _input(event):
 	if event is InputEventMouseButton && reload > firing:
+		print("shot")
 		var angle = position.angle_to_point(get_global_mouse_position())
 		#shoot_angle(1000, angle, 500,1)
 		#shoot_raycast(angle)
 		reload = 0
-		
+		var ray = Ray.instance()
+		ray.rotation = angle
 
 		
 func shoot(v, reach, damage):

@@ -62,7 +62,6 @@ pause={
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
+quality/filters/anisotropic_filter_level=1
 environment/default_clear_color=Color( 0, 0.0823529, 0.207843, 1 )
 environment/default_environment="res://default_env.tres"
-quality/filters/anisotropic_filter_level=1

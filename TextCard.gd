@@ -8,6 +8,7 @@ var done = false;
 
 func _ready():
 	get_tree().paused = true;
+	$"../PauseController".paused = true;
 	get_node("CanvasLayer").get_node("Text").text = textContent
 
 func _process(delta):
@@ -15,6 +16,7 @@ func _process(delta):
 	if(timer>maxTimer && !done):
 		sound.play()
 		get_tree().paused = false;
+		$"../PauseController".paused = false;
 		done = true;
 		get_node("CanvasLayer").get_node("ColorRect").hide()
 		get_node("CanvasLayer").get_node("Text").hide()

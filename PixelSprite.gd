@@ -1,6 +1,6 @@
 extends AnimatedSprite
 
-const pixelSize = 4;
+const pixelSize = 12;
 
 func _process(_delta):
 	var pixelPos = get_global_transform().origin

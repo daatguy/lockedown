@@ -5,6 +5,7 @@ var reach = 1200
 var direction = 0
 var damage = 37
 signal hit(damage)
+var z_offset = 100;
 
 func _ready():
 	$Visibility.connect("screen_exited", self, "_on_Visibility_screen_exited")
@@ -20,6 +21,9 @@ func set_velocity(v):
 
 
 func _process(delta):
+	#Y Sorting
+	z_index = z_offset+position[1]*0.1
+	
 	if reach <= 0:
 		hide()
 		$CollisionShape2D.set_deferred("disabled", true)

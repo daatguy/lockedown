@@ -1,17 +1,16 @@
-extends Node2D
+extends Node
 
+export (PackedScene) var PauseMenu = preload("res://pausemenu.tscn")
+var menu
+var paused = false;
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+func _process(_delta):
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = !get_tree().paused
+		paused = get_tree().paused
+		if(paused):
+			menu = PauseMenu.instance()
+			add_child(menu)
+			menu.get_node("Resume").pausecontroller = self
+		else:
+			remove_child(menu)

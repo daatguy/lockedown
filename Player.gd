@@ -14,7 +14,7 @@ var health = maxHealth
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	$RayCast2D.add_exception(self)
+	#$RayCast2D.add_exception(self)
 
 func _process(delta):
 	

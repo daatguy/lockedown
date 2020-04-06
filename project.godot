@@ -21,7 +21,7 @@ boot_splash/image="res://sprites/boss_head.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0, 0.0823529, 0.207843, 1 )
-config/icon="res://sprites/boss_head.png"
+config/icon="res://sprites/sword.png"
 
 [display]
 

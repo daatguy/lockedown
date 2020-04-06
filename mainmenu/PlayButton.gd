@@ -13,6 +13,7 @@ func _on_Title_displayed():
 
 func _pressed():
 	._pressed();
+	self.owner.queue_free()
 	get_tree().change_scene("ingame.tscn");
 
 func _process(delta):

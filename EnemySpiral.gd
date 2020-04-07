@@ -9,7 +9,7 @@ func _ready():
 func shoot_pattern():
 	var distance = $"../Player".global_position.distance_to(global_position);
 	if(distance<sightRange):
-		var bullet = shoot(bullet_velocity, 1200, 37)
+		var bullet = shoot(bullet_velocity, 1200, 1)
 		bullet.z_offset += height;
 		bullet_velocity = bullet_velocity.rotated(-PI/4)
 		get_node("ShootSound").pitch_scale = pitch-pitchVariation/2+pitchVariation*randf();

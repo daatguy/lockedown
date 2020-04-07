@@ -3,7 +3,7 @@
 [ext_resource path="res://PixelSprite.gd" type="Script" id=1]
 [ext_resource path="res://EnemyGeneric.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://PixelScaleShape.gd" type="Script" id=3]
-[ext_resource path="res://EnemyGeneric.gd" type="Script" id=4]
+[ext_resource path="res://EnemyGenericAnimated.gd" type="Script" id=4]
 [ext_resource path="res://sounds/shoot_4.wav" type="AudioStream" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -19,8 +19,7 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 12, 12 )
 frames = ExtResource( 2 )
-animation = "shoot4"
-frame = 1
+animation = "idle7"
 playing = true
 script = ExtResource( 1 )
 

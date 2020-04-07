@@ -26,22 +26,13 @@ func _process(delta):
 	direction = floor(rad2deg(angle_to_player())/45+3.5)
 	if(direction==-1):
 		direction = 0;
-	if velocity.length() > 0:
-		sprite.animation = "walk"+str(direction)
-	else:
-		if(shooting):
-			sprite.animation = "shoot"+str(direction)
-			if(sprite.frame==1):
-				shooting = false
-		else:
-			#warning-ignore:warning_id 
-			sprite.animation = "idle"+str(direction)
+	
 		
 		
 func shoot_pattern():
 	var distance = $"../Player".global_position.distance_to(global_position);
 	if(distance<sightRange):
-		shoot_angle(800, angle_8_to_player(), 3000, 37)
+		shoot_angle(800, angle_8_to_player(), 3000, 1)
 		get_node("ShootSound").pitch_scale = pitch-pitchVariation/2+pitchVariation*randf();
 		get_node("ShootSound").play();
 

@@ -12,6 +12,16 @@ var reload = 0;
 var firing = .25; #how many seconds it takes you to shoot a bullet
 var maxHealth = 4;
 var health = maxHealth
+const dashLengthMin = 6;
+const dashLengthMax = 16;
+const dashIFrameBegin = 0;
+const dashIFrameEnd = 1;
+var dashSpeed = 6400;
+var dashHoldSpeed = 12800;
+var dashDecay = 0.4;
+var dashFrames = 0;
+var dashVector : Vector2;
+var dashing = false
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -20,25 +30,40 @@ func _ready():
 func _process(delta):
 	
 	healthBar.animation = str(health);
-	
-	if(reload < firing):
-		reload += delta;
 	z_index = 99+position[1]*0.1
+	
 	var velocity = Vector2.ZERO
-	if Input.is_action_pressed("right"):
-		velocity += Vector2.RIGHT
-	if Input.is_action_pressed("left"):
-		velocity += Vector2.LEFT
-	if Input.is_action_pressed("down"):
-		velocity += Vector2.DOWN
-	if Input.is_action_pressed("up"):
-		velocity += Vector2.UP
-	if velocity.length() > 0:
+	if(dashing && (dashFrames<dashLengthMin || (Input.is_action_pressed("dash") && dashFrames<dashLengthMax))):
+		#Disable collider if I frames
+		$"CollisionShape2D".disabled = (dashFrames>=dashIFrameBegin && dashFrames<dashIFrameEnd)
+		dashFrames += 1;
+		var speedAdd = 0;
+		if Input.is_action_pressed("dash"):
+			speedAdd = dashHoldSpeed;
+		velocity = dashVector.normalized() * (dashSpeed+speedAdd) * pow(dashDecay, dashLengthMax-dashFrames)
+	else:
+		dashing = false
+		if(reload < firing):
+			reload += delta;
+		if Input.is_action_pressed("right"):
+			velocity += Vector2.RIGHT
+		if Input.is_action_pressed("left"):
+			velocity += Vector2.LEFT
+		if Input.is_action_pressed("down"):
+			velocity += Vector2.DOWN
+		if Input.is_action_pressed("up"):
+			velocity += Vector2.UP
+		if Input.is_action_just_pressed('dash'):
+			dashing = true;
+			dashVector = get_global_mouse_position()-get_global_position()
 		velocity = velocity.normalized() * speed
+	if velocity.length() > 0:
 		direction = fposmod(floor(rad2deg(-velocity.angle())/45),8);
 		if(0 < velocity.angle() && velocity.angle() <= PI): # ||velocity.y>0 || (velocity.y==0 && velocity.x<0)):
 			direction += 1
 		#print(direction);
+		if(direction==8):
+			direction = 0;
 		sprite.animation = "walk"+str(direction)
 	else:
 		sprite.animation = "idle"+str(direction)
@@ -46,7 +71,7 @@ func _process(delta):
 		position += velocity * delta
 
 func _on_Bullet_hit(damage):
-	health -= 1;
+	health -= damage;
 	if(health==0):
 		# Remove the current level
 		
@@ -84,7 +109,7 @@ func shoot(v, reach, damage):
 	bullet.damage = damage
 	return bullet
 
-func shoot_angle(speed, angle, reach, damage):
-	var v = Vector2(-speed, 0)
-	v = v.rotated(angle)
-	return shoot(v, reach, damage)
+func shoot_angle(speedIn, angleIn, reachIn, damageIn):
+	var v = Vector2(-speedIn, 0)
+	v = v.rotated(angleIn)
+	return shoot(v, reachIn, damageIn)

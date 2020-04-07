@@ -10,7 +10,6 @@ func _ready():
 	sightRange = 1200;
 
 func _process(_delta):
-	var distance = $"../Player".global_position.distance_to(global_position);
 	if(seconds_per_shot == between_volley_shots):
 		var dir = floor(rad2deg(angle_to_player())/45+3.5)
 		if(dir==-1):
@@ -37,5 +36,5 @@ func shoot_pattern():
 		return
 	elif (shots_taken == 0):
 		seconds_per_shot = between_volley_shots
-	shoot_angle(800, angle_to_player(), 1500, 10)
+	shoot_angle(800, angle_to_player(), 1500, 1)
 	shots_taken += 1

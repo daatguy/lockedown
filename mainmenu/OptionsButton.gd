@@ -7,6 +7,7 @@ func _get_max_text():
 
 func _ready():
 	._ready()
+	#warning-ignore: RETURN_VALUE_DISCARDED
 	get_node("../Play").connect("play_displayed", self, "_on_play_displayed")
 
 func _on_play_displayed():

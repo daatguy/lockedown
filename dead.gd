@@ -17,5 +17,5 @@ func _process(delta):
 		menud = true;
 	$"AnimatedSprite".modulate = Color(1,1,1,1.3-timer*0.3)
 
-func set_direction(direction):
-	self.direction = int(floor(direction))
+func set_direction(directionIn):
+	self.direction = int(floor(directionIn))

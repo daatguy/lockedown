@@ -6,6 +6,7 @@ var title = false;
 
 func _ready():
 	._ready();
+	#warning-ignore: RETURN_VALUE_DISCARDED
 	get_node("../../Title").connect("displayed", self, "_on_Title_displayed");
 
 func _on_Title_displayed():
@@ -14,6 +15,7 @@ func _on_Title_displayed():
 func _pressed():
 	._pressed();
 	self.owner.queue_free()
+	#warning-ignore: RETURN_VALUE_DISCARDED
 	get_tree().change_scene("ingame.tscn");
 
 func _process(delta):

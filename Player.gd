@@ -30,7 +30,7 @@ func _ready():
 func _process(delta):
 	
 	healthBar.animation = str(health);
-	z_index = 99+position[1]*0.1
+	z_index = int(99+position[1]*0.1)
 	
 	var velocity = Vector2.ZERO
 	if(dashing && (dashFrames<dashLengthMin || (Input.is_action_pressed("dash") && dashFrames<dashLengthMax))):

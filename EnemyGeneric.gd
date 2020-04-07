@@ -57,9 +57,6 @@ func angle_to_player():
 func angle_8_to_player():
 	return deg2rad(floor(rad2deg(angle_to_player())/45+0.5)*45)
 
-func _on_Area2D_area_entered(area):
-	print("AAAAAa")
-
 func set_health(h):
 	health = h
 	if h <= 0:

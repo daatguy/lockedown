@@ -8,8 +8,11 @@ signal hit(damage)
 var z_offset = 100;
 
 func _ready():
+	#warning-ignore: RETURN_VALUE_DISCARDED
 	$Visibility.connect("screen_exited", self, "_on_Visibility_screen_exited")
+	#warning-ignore: RETURN_VALUE_DISCARDED
 	connect("hit", $"../Player", "_on_Bullet_hit")
+	#warning-ignore: RETURN_VALUE_DISCARDED
 	connect("body_entered", self, "_on_self_body_entered")
 
 func set_velocity(v):

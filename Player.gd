@@ -13,7 +13,7 @@ var firing = .25; #how many seconds it takes you to shoot a bullet
 var maxHealth = 4;
 var health = maxHealth
 const dashIFrameBegin = 0;
-const dashIFrameEnd = 0.09;
+const dashIFrameEnd = 0.15;
 const dashSpeed = 6400;
 const dashSpeedCutoff = 2400;
 const dashDecay = 0.15;
@@ -39,6 +39,7 @@ func _process(delta):
 		$"CollisionShape2D".disabled = (dashFrames>=dashIFrameBegin && dashFrames<dashIFrameEnd)
 		dashFrames += delta;
 		var decay = dashDecay;
+		$"DashSound".pitch_scale = 1.3+0.15*randf()
 		if(Input.is_action_pressed("dash") && !dashReleased):
 			decay = dashDecayHold
 		else:
@@ -61,6 +62,7 @@ func _process(delta):
 		if Input.is_action_pressed("up"):
 			velocity += Vector2.UP
 		if Input.is_action_just_pressed('dash'):
+			$"DashSound".play()
 			dashing = true;
 			dashReleased = false;
 			dashFrames = 0;

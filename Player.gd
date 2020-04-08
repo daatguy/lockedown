@@ -63,6 +63,7 @@ func _process(delta):
 			velocity += Vector2.UP
 		if Input.is_action_just_pressed('dash'):
 			$"DashSound".play()
+			$"DashParticles".emitting = true
 			dashing = true;
 			dashReleased = false;
 			dashFrames = 0;

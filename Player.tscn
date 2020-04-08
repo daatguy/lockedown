@@ -94,6 +94,9 @@ drag_margin_top = 0.0
 drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Fog" type="AnimatedSprite" parent="Camera2D"]
 scale = Vector2( 12, 12 )
@@ -105,6 +108,7 @@ frame = 1
 playing = true
 script = ExtResource( 5 )
 __meta__ = {
+"_edit_lock_": true,
 "_editor_description_": ""
 }
 
@@ -117,6 +121,7 @@ animation = "wave"
 playing = true
 script = ExtResource( 5 )
 __meta__ = {
+"_edit_lock_": true,
 "_editor_description_": ""
 }
 
@@ -127,12 +132,18 @@ animation = "hit"
 frame = 1
 playing = true
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 16 )
 scale = Vector2( 4, 4 )
 shape = SubResource( 11 )
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="PlayerHitFreeze" type="Node" parent="."]
 pause_mode = 2
@@ -155,10 +166,12 @@ scale = Vector2( 24, 24 )
 z_index = 4096
 z_as_relative = false
 frames = ExtResource( 11 )
-animation = "4"
-frame = 5
+animation = "hit"
 playing = true
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="DashSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
@@ -176,3 +189,6 @@ local_coords = false
 draw_order = 1
 process_material = SubResource( 13 )
 texture = ExtResource( 13 )
+__meta__ = {
+"_edit_lock_": true
+}

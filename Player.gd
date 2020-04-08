@@ -70,12 +70,7 @@ func _process(delta):
 			dashVector = get_global_mouse_position()-get_global_position()
 		velocity = velocity.normalized() * speed * delta
 	if velocity.length() > 0:
-		direction = fposmod(floor(rad2deg(-velocity.angle())/45),8);
-		if(0 < velocity.angle() && velocity.angle() <= PI): # ||velocity.y>0 || (velocity.y==0 && velocity.x<0)):
-			direction += 1
-		#print(direction);
-		if(direction==8):
-			direction = 0;
+		direction = fposmod(round(rad2deg(-velocity.angle())/45),8);
 		sprite.animation = "walk"+str(direction)
 	else:
 		sprite.animation = "idle"+str(direction)

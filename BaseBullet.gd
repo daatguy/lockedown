@@ -4,7 +4,7 @@ var velocity = Vector2() setget set_velocity
 var reach = 1200
 var direction = 0
 var damage = 37
-signal hit(damage)
+signal hit(damage, direction)
 var z_offset = 100;
 
 func _ready():
@@ -36,10 +36,12 @@ func _process(delta):
 
 func _on_self_body_entered(body):
 	if body == $"../Player":
-		emit_signal("hit", damage)
-		hide()
-		$CollisionShape2D.set_deferred("disabled", true)
-		queue_free()
+		body.dashBulletCount += 1;
+		if(body.is_valid_hit(damage,direction)):
+			emit_signal("hit", damage, direction)
+			hide()
+			$CollisionShape2D.set_deferred("disabled", true)
+			queue_free()
 
 func _on_Visibility_screen_exited():
 	queue_free()

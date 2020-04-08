@@ -18,6 +18,8 @@ const dashSpeed = 6400;
 const dashSpeedCutoff = 2400;
 const dashDecay = 0.15;
 const dashDecayHold = 0.6;
+var dashBulletMax = 1;
+var dashBulletCount = 0;
 var dashFrames = 0;
 var dashVector : Vector2;
 var dashing = false
@@ -34,9 +36,6 @@ func _process(delta):
 	
 	var velocity = Vector2.ZERO
 	if(dashing):
-		print(dashReleased)
-		#Disable collider if I frames
-		$"CollisionShape2D".disabled = (dashFrames>=dashIFrameBegin && dashFrames<dashIFrameEnd)
 		dashFrames += delta;
 		var decay = dashDecay;
 		$"DashSound".pitch_scale = 1.3+0.15*randf()
@@ -62,12 +61,7 @@ func _process(delta):
 		if Input.is_action_pressed("up"):
 			velocity += Vector2.UP
 		if Input.is_action_just_pressed('dash'):
-			$"DashSound".play()
-			$"DashParticles".emitting = true
-			dashing = true;
-			dashReleased = false;
-			dashFrames = 0;
-			dashVector = get_global_mouse_position()-get_global_position()
+			dash()
 		velocity = velocity.normalized() * speed * delta
 	if velocity.length() > 0:
 		direction = fposmod(round(rad2deg(-velocity.angle())/45),8);
@@ -77,7 +71,26 @@ func _process(delta):
 	if(!test_move(transform,velocity)):
 		position += velocity
 
-func _on_Bullet_hit(damage):
+func is_valid_hit(damage, dirIn):
+	var invDirIn = fposmod(dirIn+4,8)
+	if(invDirIn==direction):
+		return true
+	if(dashBulletCount>dashBulletMax):
+		return true
+	if(dashFrames>=dashIFrameBegin && dashFrames<dashIFrameEnd):
+		return false
+	return false
+
+func dash():
+	$"DashSound".play()
+	$"DashParticles".emitting = true
+	dashing = true;
+	dashReleased = false;
+	dashBulletCount = 0;
+	dashFrames = 0;
+	dashVector = get_global_mouse_position()-get_global_position()
+
+func _on_Bullet_hit(damage, dirIn):
 	health -= damage;
 	if(health==0):
 		# Remove the current level

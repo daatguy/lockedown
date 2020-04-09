@@ -28,8 +28,8 @@ func _process(delta):
 	z_index = z_offset+position[1]*0.1
 	
 	if reach <= 0:
-		hide()
-		$CollisionShape2D.set_deferred("disabled", true)
+		#hide()
+		#$CollisionShape2D.set_deferred("disabled", true)
 		queue_free()
 	position += velocity * delta
 	reach -= velocity.length() * delta
@@ -37,6 +37,7 @@ func _process(delta):
 func _on_self_body_entered(body):
 	if body == $"../Player":
 		body.dashBulletCount += 1;
+		print('fart')
 		if(body.is_valid_hit(damage,direction)):
 			emit_signal("hit", damage, direction)
 			hide()

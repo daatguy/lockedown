@@ -3,6 +3,8 @@ extends Camera2D
 const pixelSize = 12;
 var shakeAmount = 0;
 var shakeDecay = 0.65;
+var followDecay = 0.7;
+var deltaPos = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,13 +13,16 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	shakeAmount *= shakeDecay;
+func _process(delta):
+	shakeAmount *= pow(shakeDecay,$"../".targetDelta/delta)
 	var shakeVector = Vector2(0,0);
 	shakeVector.x = (randf()-0.5)*shakeAmount;
 	shakeVector.y = (randf()-0.5)*shakeAmount;
 	
-	var pixelPos = get_global_transform().origin
-	offset.x = -fposmod(pixelPos.x,pixelSize)/scale.x;
-	offset.y = -fposmod(pixelPos.y,pixelSize)/scale.y;
+	var globalPos = get_global_position()
+	position = -deltaPos
+	offset.x = -fposmod(globalPos.x,pixelSize)/scale.x;
+	offset.y = -fposmod(globalPos.y,pixelSize)/scale.y;
 	offset += shakeVector;
+	if(!$"../".cameraFollowPause):
+		deltaPos *= pow(followDecay,$"../".targetDelta/delta)

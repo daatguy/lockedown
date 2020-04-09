@@ -8,8 +8,8 @@ func _process(delta):
 		get_tree().paused = true
 		$"../AnimatedSprite".animation = "hit"
 		$"../AnimatedSprite".frame = $"..".direction;
-		$"../HealthBar".animation = "hit"
-		$"../HealthBar".frame = $"..".health-1;
+		$"../Camera2D/HealthBar".animation = "hit"
+		$"../Camera2D/HealthBar".frame = $"..".health-1;
 		$"Hit".play()
 		return
 	elif(time<0):

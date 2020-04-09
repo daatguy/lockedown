@@ -5,19 +5,25 @@ var direction = 0;
 var screen_size #this feels like it belongs somewhere else
 onready var fog = get_node("Camera2D/Fog")
 onready var sprite = get_node("AnimatedSprite")
-onready var healthBar = get_node("HealthBar")
+onready var healthBar = get_node("Camera2D/HealthBar")
 export var PlayerBullet = preload("res://PlayerBullet.tscn")
 export var Ray = preload("res://Ray.tscn")
+var targetFPS : float = 60.0;
+var targetDelta : float = 1.0/targetFPS;
 var reload = 0;
 var firing = .25; #how many seconds it takes you to shoot a bullet
 var maxHealth = 4;
 var health = maxHealth
-const dashIFrameBegin = 0;
-const dashIFrameEnd = 0.1;
-const dashSpeed = 5600;
-const dashSpeedCutoff = 2400;
-const dashDecay = 0.15;
-const dashDecayHold = 0.6;
+var cameraFollowPause = false;
+var dashCameraLength = 0.1*targetFPS;
+var dashIFrameBegin = 0.5*targetFPS;
+var dashIFrameEnd = 0.1*targetFPS;
+var dashSpeed = 5600;
+var dashSpeedCutoff = 2400;
+var dashDecay = 0.9;
+var dashDecayHold = 0.6;
+var dashDistance = 0;
+var dashMouseDistance;
 var dashBulletMax = 1;
 var dashBulletCount = 0;
 var dashFrames = 0;
@@ -36,20 +42,27 @@ func _process(delta):
 	
 	var velocity = Vector2.ZERO
 	if(dashing):
-		dashFrames += delta;
+		dashFrames += targetDelta/delta;
 		var decay = dashDecay;
 		$"DashSound".pitch_scale = 1.3+0.15*randf()
 		if(Input.is_action_pressed("dash") && !dashReleased):
 			decay = dashDecayHold
 		else:
 			dashReleased = true
-		velocity = delta * dashVector.normalized() * (dashSpeed) * pow(decay, 1+5*dashFrames)
+		velocity = delta * dashVector.normalized() * (dashSpeed) * pow(decay, dashFrames)
+		if(dashFrames>dashCameraLength):
+			cameraFollowPause = false;
+		if(dashDistance+velocity.length()>dashMouseDistance):
+			velocity = velocity.normalized()*(dashMouseDistance-dashDistance)
+			stop_dash()
+		else:
+			dashDistance += velocity.length()
 		if(velocity.length() < dashSpeedCutoff*delta):
 			dashReleased = true
 		if(velocity.length() <= speed*delta):
-			dashing = false
+			stop_dash()
 	else:
-		dashing = false
+		cameraFollowPause = false
 		if(reload < firing):
 			reload += delta;
 		if Input.is_action_pressed("right"):
@@ -70,15 +83,24 @@ func _process(delta):
 		sprite.animation = "idle"+str(direction)
 	if(!test_move(transform,velocity)):
 		position += velocity
+		$"Camera2D".deltaPos += velocity
+	$"CollisionShape2D".adjust_collider(velocity);
 
-func is_valid_hit(damage, dirIn):
+func is_valid_hit(_damage, dirIn):
 	var invDirIn = fposmod(dirIn+4,8)
+	print("validhit1")
 	if(invDirIn==direction):
 		return true
+	print("validhit2")
 	if(dashBulletCount>dashBulletMax):
 		return true
+	print("validhit3")
+	print("dashFrames "+str(dashFrames))
+	print("dashIFrameBegin "+str(dashIFrameBegin))
+	print("dashIFrameEnd "+str(dashIFrameEnd))
 	if(dashFrames>=dashIFrameBegin && dashFrames<dashIFrameEnd):
 		return false
+	print("validhit4")
 	return false
 
 func dash():
@@ -88,9 +110,16 @@ func dash():
 	dashReleased = false;
 	dashBulletCount = 0;
 	dashFrames = 0;
+	dashDistance = 0;
+	cameraFollowPause = true
 	dashVector = get_global_mouse_position()-get_global_position()
+	dashMouseDistance = dashVector.length()
+	
+func stop_dash():
+	dashFrames = 0;
+	dashing = false;
 
-func _on_Bullet_hit(damage, dirIn):
+func _on_Bullet_hit(damage, _dirIn):
 	health -= damage;
 	if(health==0):
 		# Remove the current level

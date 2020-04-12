@@ -13,7 +13,7 @@ func _ready():
 	#warning-ignore: RETURN_VALUE_DISCARDED
 	connect("hit", $"../Player", "_on_Bullet_hit")
 	#warning-ignore: RETURN_VALUE_DISCARDED
-	connect("body_entered", self, "_on_self_body_entered")
+	connect("body_entered", self, "_on_Area2D_body_enter")
 
 func set_velocity(v):
 	velocity = v
@@ -34,8 +34,9 @@ func _process(delta):
 	position += velocity * delta
 	reach -= velocity.length() * delta
 
-func _on_self_body_entered(body):
-	if body == $"../Player":
+func _on_Area2D_body_enter(body):
+	print(body)
+	if body.is_in_group("player"):
 		body.dashBulletCount += 1;
 		print('fart')
 		if(body.is_valid_hit(damage,direction)):

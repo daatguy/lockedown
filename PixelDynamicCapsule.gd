@@ -6,6 +6,6 @@ func _ready():
 	defaultPos = position;
 
 func adjust_collider(velocity):
-	shape.height = velocity.length()
+	get_shape().set_height(velocity.length())
 	position = defaultPos+(-velocity)*0.5
 	rotation = velocity.angle()+PI/2

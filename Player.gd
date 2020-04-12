@@ -3,7 +3,7 @@ extends KinematicBody2D
 export var speed = 800;
 var direction = 0;
 var screen_size #this feels like it belongs somewhere else
-onready var fog = get_node("Camera2D/Fog")
+onready var fog = get_node("Fog")
 onready var sprite = get_node("AnimatedSprite")
 onready var healthBar = get_node("Camera2D/HealthBar")
 export var PlayerBullet = preload("res://PlayerBullet.tscn")

@@ -38,31 +38,31 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 464, 324 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 7 )
 region = Rect2( 464, 0, 464, 324 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 7 )
 region = Rect2( 928, 0, 464, 324 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 7 )
 region = Rect2( 1392, 0, 464, 324 )
 
 [sub_resource type="SpriteFrames" id=10]
 animations = [ {
-"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "wave",
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=18]
+[sub_resource type="CapsuleShape2D" id=11]
 radius = 48.0
 height = 0.0
 
@@ -82,7 +82,9 @@ orbit_velocity_random = 0.0
 scale = 16.0
 anim_speed = 1.0
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
 pause_mode = 1
 script = ExtResource( 1 )
 
@@ -133,6 +135,7 @@ z_index = 4096
 z_as_relative = false
 frames = ExtResource( 11 )
 animation = "4"
+frame = 5
 playing = true
 script = ExtResource( 5 )
 __meta__ = {
@@ -152,7 +155,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 24 )
-shape = SubResource( 18 )
+shape = SubResource( 11 )
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true

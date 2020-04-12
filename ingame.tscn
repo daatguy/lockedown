@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tileset.tres" type="TileSet" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://EnemyShotgun.tscn" type="PackedScene" id=7]
 [ext_resource path="res://EnemyMachinegun.tscn" type="PackedScene" id=8]
 [ext_resource path="res://EnemySpiral.tscn" type="PackedScene" id=9]
-[ext_resource path="res://EnemyStar.tscn" type="PackedScene" id=10]
 
 [node name="ingame" type="Node2D"]
 pause_mode = 1
@@ -30,82 +29,87 @@ position = Vector2( 893.487, 4476.96 )
 position = Vector2( 896.672, 2974.36 )
 
 [node name="EnemyGeneric2" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 8814.69, 3118.36 )
 
 [node name="EnemyGeneric3" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 5575.5, 3118.36 )
 
 [node name="EnemyGeneric4" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 5575.5, 5521.28 )
 
 [node name="EnemyGeneric5" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 8814.69, 5521.28 )
 
 [node name="OnLoad" type="Node" parent="."]
 script = ExtResource( 4 )
 TextCard = ExtResource( 5 )
 
-[node name="EnemyStar" parent="." instance=ExtResource( 10 )]
-position = Vector2( 3008.87, 286.877 )
-
-[node name="EnemyStar2" parent="." instance=ExtResource( 10 )]
-position = Vector2( 7199.24, 3674.86 )
-
-[node name="EnemyStar3" parent="." instance=ExtResource( 10 )]
-position = Vector2( 6500.04, 4288.82 )
-
-[node name="EnemyStar4" parent="." instance=ExtResource( 10 )]
-position = Vector2( 7895.81, 4288.82 )
-
-[node name="EnemyStar5" parent="." instance=ExtResource( 10 )]
-position = Vector2( 7199.24, 4972.96 )
-
 [node name="EnemyShotgun" parent="." instance=ExtResource( 7 )]
+visible = false
 position = Vector2( 893.487, 472.669 )
 
 [node name="EnemyShotgun2" parent="." instance=ExtResource( 7 )]
+visible = false
 position = Vector2( 7895.81, 3118.36 )
 
 [node name="EnemyShotgun3" parent="." instance=ExtResource( 7 )]
+visible = false
 position = Vector2( 6500.04, 3118.36 )
 
 [node name="EnemyShotgun4" parent="." instance=ExtResource( 7 )]
+visible = false
 position = Vector2( 5575.5, 3674.86 )
 
 [node name="EnemyShotgun5" parent="." instance=ExtResource( 7 )]
+visible = false
 position = Vector2( 5575.5, 4828.96 )
 
 [node name="EnemyShotgun6" parent="." instance=ExtResource( 7 )]
+visible = false
 position = Vector2( 6143.61, 5521.28 )
 
 [node name="EnemyShotgun7" parent="." instance=ExtResource( 7 )]
+visible = false
 position = Vector2( 8286.8, 5521.28 )
 
 [node name="EnemyShotgun8" parent="." instance=ExtResource( 7 )]
+visible = false
 position = Vector2( 8814.69, 4828.96 )
 
 [node name="EnemyShotgun9" parent="." instance=ExtResource( 7 )]
+visible = false
 position = Vector2( 8814.69, 3713.27 )
 
 [node name="EnemyMachinegun" parent="." instance=ExtResource( 8 )]
+visible = false
 position = Vector2( 5223.28, 142.877 )
 
 [node name="EnemyMachinegun2" parent="." instance=ExtResource( 8 )]
+visible = false
 position = Vector2( 7199.24, 4439.97 )
 
 [node name="EnemySpiral" parent="." instance=ExtResource( 9 )]
+visible = false
 position = Vector2( 7199.24, -465.468 )
 
 [node name="EnemySpiral2" parent="." instance=ExtResource( 9 )]
+visible = false
 position = Vector2( 8286.8, 3361.27 )
 
 [node name="EnemySpiral3" parent="." instance=ExtResource( 9 )]
+visible = false
 position = Vector2( 6143.61, 3361.27 )
 
 [node name="EnemySpiral4" parent="." instance=ExtResource( 9 )]
+visible = false
 position = Vector2( 8286.8, 4620.96 )
 
 [node name="EnemySpiral5" parent="." instance=ExtResource( 9 )]
+visible = false
 position = Vector2( 6143.61, 4620.96 )
 
 [node name="PauseController" type="Node" parent="."]

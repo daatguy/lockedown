@@ -121,8 +121,11 @@ func _process(delta):
 	var oldPos = position
 	var collision = move_and_collide(velocity)
 	if collision:
-		velocity = velocity.slide(collision.normal)
-		move_and_collide(velocity)
+		if(collision.is_in_group("hittable")):
+			pass
+		else:
+			velocity = velocity.slide(collision.normal)
+			move_and_collide(velocity)
 	
 	
 		#position += velocity

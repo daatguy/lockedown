@@ -136,7 +136,6 @@ z_index = 4096
 z_as_relative = false
 frames = ExtResource( 11 )
 animation = "4"
-frame = 7
 playing = true
 script = ExtResource( 5 )
 __meta__ = {

@@ -33,6 +33,7 @@ var dashing = false
 var dashReleased = false;
 var polygonPresent = false;
 var polygonVectorArray = [];
+var lastHitEnemy = null
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -121,11 +122,16 @@ func _process(delta):
 	var oldPos = position
 	var collision = move_and_collide(velocity)
 	if collision:
-		if(collision.is_in_group("hittable")):
-			pass
+		if(collision.collider.is_in_group("hittable") && collision.collider!=lastHitEnemy):
+			#PERFORM AN EPIC GUN-FU ATTACK
+			lastHitEnemy = collision.collider
+			$"PlayerAttackFreeze".time = 0.5
 		else:
+			lastHitEnemy = null
 			velocity = velocity.slide(collision.normal)
 			move_and_collide(velocity)
+	else:
+		lastHitEnemy = null
 	
 	
 		#position += velocity
@@ -134,19 +140,12 @@ func _process(delta):
 
 func is_valid_hit(_damage, dirIn):
 	var invDirIn = fposmod(dirIn+4,8)
-	print("validhit1")
 	if(invDirIn==direction):
 		return true
-	print("validhit2")
 	if(dashBulletCount>dashBulletMax):
 		return true
-	print("validhit3")
-	print("dashFrames "+str(dashFrames))
-	print("dashIFrameBegin "+str(dashIFrameBegin))
-	print("dashIFrameEnd "+str(dashIFrameEnd))
 	if(dashFrames>=dashIFrameBegin && dashFrames<dashIFrameEnd):
 		return false
-	print("validhit4")
 	return false
 
 func dash():

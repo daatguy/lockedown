@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://player.tres" type="SpriteFrames" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://HealthBar.tres" type="SpriteFrames" id=11]
 [ext_resource path="res://sounds/dash.wav" type="AudioStream" id=12]
 [ext_resource path="res://sprites/particle-x-sheet.png" type="Texture" id=13]
+[ext_resource path="res://AttackShadow.gd" type="Script" id=14]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
@@ -94,7 +95,7 @@ z_index = 20
 z_as_relative = false
 frames = SubResource( 5 )
 animation = "wave"
-frame = 2
+frame = 1
 playing = true
 script = ExtResource( 5 )
 __meta__ = {
@@ -108,7 +109,6 @@ z_index = 4095
 z_as_relative = false
 frames = SubResource( 10 )
 animation = "wave"
-frame = 1
 playing = true
 script = ExtResource( 5 )
 __meta__ = {
@@ -136,6 +136,7 @@ z_index = 4096
 z_as_relative = false
 frames = ExtResource( 11 )
 animation = "4"
+frame = 3
 playing = true
 script = ExtResource( 5 )
 __meta__ = {
@@ -168,6 +169,18 @@ script = ExtResource( 8 )
 stream = ExtResource( 10 )
 volume_db = -4.0
 pitch_scale = 0.5
+
+[node name="PlayerAttackFreeze" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 8 )
+
+[node name="Hit" type="AudioStreamPlayer" parent="PlayerAttackFreeze"]
+stream = ExtResource( 10 )
+volume_db = -4.0
+pitch_scale = 0.5
+
+[node name="AttackShadow" type="Node2D" parent="PlayerAttackFreeze"]
+script = ExtResource( 14 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 pause_mode = 2

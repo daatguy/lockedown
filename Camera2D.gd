@@ -14,6 +14,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(delta==0):
+		return
 	shakeAmount *= pow(shakeDecay,$"../".targetDelta/delta)
 	var shakeVector = Vector2(0,0);
 	shakeVector.x = (randf()-0.5)*shakeAmount;

@@ -7,6 +7,7 @@ onready var fog = get_node("Fog")
 onready var sprite = get_node("AnimatedSprite")
 onready var healthBar = get_node("Camera2D/HealthBar")
 export var PlayerBullet = preload("res://PlayerBullet.tscn")
+export var PlayerAttack = preload("res://PlayerPolygonAttack.tscn")
 export var Ray = preload("res://Ray.tscn")
 var targetFPS : float = 60.0;
 var targetDelta : float = 1.0/targetFPS;
@@ -15,7 +16,7 @@ var firing = .25; #how many seconds it takes you to shoot a bullet
 var maxHealth = 4;
 var health = maxHealth
 var cameraFollowPause = false;
-var dashCameraLength = 0.1*targetFPS;
+var dashCameraLength = 0.12*targetFPS;
 var dashIFrameBegin = 0.5*targetFPS;
 var dashIFrameEnd = 0.1*targetFPS;
 var dashSpeed = 5600;
@@ -30,10 +31,44 @@ var dashFrames = 0;
 var dashVector : Vector2;
 var dashing = false
 var dashReleased = false;
+var polygonPresent = false;
+var polygonVectorArray = [];
 
 func _ready():
 	screen_size = get_viewport_rect().size
 	#$RayCast2D.add_exception(self)
+
+func place_polygon():
+	if(polygonPresent==false):
+		polygonVectorArray = [];
+		var polygonAttackAdd = PlayerAttack.instance()
+		polygonAttackAdd.position = position
+		$"..".add_child(polygonAttackAdd)
+		polygonPresent = true
+	var polygonAttack = $"../PlayerPolygonAttack"
+	var point = position-polygonAttack.position
+	polygonVectorArray.append(point);
+	polygonAttack.get_node("CollisionPolygon2D").set_polygon(polygonVectorArray)
+	polygonAttack.get_node("DrawPolygon").set_polygon(polygonVectorArray)
+	print(polygonAttack.get_node("CollisionPolygon2D").polygon)
+
+func sort_polygon():
+	var average = Vector2.ZERO;
+	var count = 0;
+	for point in polygonVectorArray:
+		count += 1
+		average += point
+	average /= count
+	var angleMap = []
+	count = 0
+	for point in polygonVectorArray:
+		pass
+		#angleMap.append(new Vector2(count,))
+
+func attack_polygon():
+	if(polygonPresent==true):
+		if($"../PlayerPolygonAttack".detonate()):
+			polygonPresent = false;
 
 func _process(delta):
 	
@@ -42,7 +77,8 @@ func _process(delta):
 	
 	var velocity = Vector2.ZERO
 	if(dashing):
-		dashFrames += targetDelta/delta;
+		if(delta!=0):
+			dashFrames += targetDelta/delta;
 		var decay = dashDecay;
 		$"DashSound".pitch_scale = 1.3+0.15*randf()
 		if(Input.is_action_pressed("dash") && !dashReleased):
@@ -81,10 +117,17 @@ func _process(delta):
 		sprite.animation = "walk"+str(direction)
 	else:
 		sprite.animation = "idle"+str(direction)
-	if(!test_move(transform,velocity)):
-		position += velocity
-		$"Camera2D".deltaPos += velocity
-	$"CollisionShape2D".adjust_collider(velocity);
+	#if(!test_move(transform,velocity)):
+	var oldPos = position
+	var collision = move_and_collide(velocity)
+	if collision:
+		velocity = velocity.slide(collision.normal)
+		move_and_collide(velocity)
+	
+	
+		#position += velocity
+	$"Camera2D".deltaPos += position-oldPos
+	$"CollisionShape2D".adjust_collider(position-oldPos);
 
 func is_valid_hit(_damage, dirIn):
 	var invDirIn = fposmod(dirIn+4,8)
@@ -116,6 +159,7 @@ func dash():
 	dashMouseDistance = dashVector.length()
 	
 func stop_dash():
+	#place_polygon()
 	dashFrames = 0;
 	dashing = false;
 

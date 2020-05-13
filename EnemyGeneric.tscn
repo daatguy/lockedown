@@ -7,7 +7,7 @@
 [ext_resource path="res://sounds/shoot_4.wav" type="AudioStream" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 12.0
+radius = 48.0
 
 [node name="EnemyGeneric" type="KinematicBody2D" groups=[
 "hittable",
@@ -15,6 +15,8 @@ radius = 12.0
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 24 )
+z_index = 1
 shape = SubResource( 1 )
 script = ExtResource( 3 )
 
@@ -22,6 +24,7 @@ script = ExtResource( 3 )
 scale = Vector2( 12, 12 )
 frames = ExtResource( 2 )
 animation = "idle7"
+frame = 1
 playing = true
 script = ExtResource( 1 )
 

@@ -125,10 +125,15 @@ func _process(delta):
 		if(collision.collider.is_in_group("hittable") && collision.collider!=lastHitEnemy):
 			#PERFORM AN EPIC GUN-FU ATTACK
 			lastHitEnemy = collision.collider
-			$"PlayerAttackFreeze".time = 0.5
+			var hitVector = (collision.collider.get_node("CollisionShape2D").get_global_position()-$"CollisionShape2D".get_global_position())
+			hitVector.y *= -1
+			var paf = $"PlayerAttackFreeze"
+			paf.angleVector = hitVector
+			paf.time = 0.5
+			paf.enemy = collision.collider
 		else:
-			lastHitEnemy = null
 			velocity = velocity.slide(collision.normal)
+			#warning-ignore:RETURN_VALUE_DISCARDED
 			move_and_collide(velocity)
 	else:
 		lastHitEnemy = null
@@ -139,6 +144,8 @@ func _process(delta):
 	$"CollisionShape2D".adjust_collider(position-oldPos);
 
 func is_valid_hit(_damage, dirIn):
+	
+	
 	var invDirIn = fposmod(dirIn+4,8)
 	if(invDirIn==direction):
 		return true

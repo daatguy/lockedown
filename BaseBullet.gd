@@ -35,10 +35,8 @@ func _process(delta):
 	reach -= velocity.length() * delta
 
 func _on_Area2D_body_enter(body):
-	print(body)
 	if body.is_in_group("player"):
 		body.dashBulletCount += 1;
-		print('fart')
 		if(body.is_valid_hit(damage,direction)):
 			emit_signal("hit", damage, direction)
 			hide()

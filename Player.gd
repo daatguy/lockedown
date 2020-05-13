@@ -146,7 +146,7 @@ func _process(delta):
 	$"CollisionShape2D".adjust_collider(position-oldPos);
 
 func is_valid_hit(_damage, dirIn):
-	return false
+	#return false
 	
 	var invDirIn = fposmod(dirIn+4,8)
 	if(invDirIn==direction):

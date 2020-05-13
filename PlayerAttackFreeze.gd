@@ -43,7 +43,8 @@ func _process(delta):
 		$"AttackShadow".visible = false
 		time = 0
 		casted = false
-		enemy.z_index = oldZE
+		#enemy.z_index = oldZE
+		enemy.queue_free()
 		$"..".z_index = oldZP
 	if(!get_parent().get_parent().get_node("PauseController").paused==true):
 		get_tree().paused = false

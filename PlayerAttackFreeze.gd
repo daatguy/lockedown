@@ -36,6 +36,7 @@ func _process(delta):
 	elif(time<0):
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 		$"Lazer".stop()
+		$"Hit".pitch_scale = 0.8+$"..".attacksInRow*0.15
 		$"Hit".play()
 		$"../Camera2D".set_shake(144,0.92)
 		#$"../Fog Top".visible = true

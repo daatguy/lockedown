@@ -35,6 +35,8 @@ var polygonPresent = false;
 var polygonVectorArray = [];
 var lastHitEnemy = null
 var lazerTime = 0
+var timeSinceAttack = 0;
+var attacksInRow = 0;
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -73,7 +75,10 @@ func attack_polygon():
 			polygonPresent = false;
 
 func _process(delta):
-	
+	timeSinceAttack += delta
+	if(timeSinceAttack>1.5):
+		#Reset our pitch run
+		attacksInRow = 0;
 	healthBar.animation = str(health);
 	z_index = int(99+position[1]*0.1)
 	
@@ -133,6 +138,8 @@ func _process(delta):
 			lazerTime = 60/$"MusicTimer".bpm
 			paf.time = $"MusicTimer".get_time_to_next_beat_delay(lazerTime)
 			paf.enemy = collision.collider
+			timeSinceAttack = 0;
+			attacksInRow += 1;
 		else:
 			velocity = velocity.slide(collision.normal)
 			#warning-ignore:RETURN_VALUE_DISCARDED

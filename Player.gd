@@ -129,7 +129,7 @@ func _process(delta):
 			hitVector.y *= -1
 			var paf = $"PlayerAttackFreeze"
 			paf.angleVector = hitVector
-			paf.time = 0.5
+			paf.time = 0.21
 			paf.enemy = collision.collider
 		else:
 			velocity = velocity.slide(collision.normal)
@@ -144,7 +144,7 @@ func _process(delta):
 	$"CollisionShape2D".adjust_collider(position-oldPos);
 
 func is_valid_hit(_damage, dirIn):
-	
+	return false
 	
 	var invDirIn = fposmod(dirIn+4,8)
 	if(invDirIn==direction):
@@ -189,7 +189,7 @@ func _on_Bullet_hit(damage, _dirIn):
 		level.call_deferred("free")
 	else:
 		$"Camera2D".shakeAmount = 16;
-		$"PlayerHitFreeze".time = 0.1;
+		$"PlayerHitFreeze".time = 0.5;
 	
 func _input(event):
 	if event is InputEventMouseButton && reload > firing:

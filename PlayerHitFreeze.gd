@@ -11,7 +11,6 @@ func _process(delta):
 		get_tree().paused = true
 		$"../AnimatedSprite".material = onecolor
 		$"../AnimatedSprite".material.set_shader_param("u_replacement_color", Color("#FFFFFF"))
-		$"../AnimatedSprite".frame = $"..".direction
 		$"Hit".play()
 		return
 	elif(time<0):

@@ -1,5 +1,6 @@
 extends Node
 
+onready var onecolor = preload("res://shaders/onecolor.material")
 var time = 0;
 var casted = false;
 var angleVector = Vector2.ZERO;
@@ -13,11 +14,14 @@ func _process(delta):
 		get_tree().paused = true
 		$"../AnimatedSprite".animation = "attack"
 		var frame = $"..".direction*2
-		if(time<0.3):
+		if(time<0.2):
 			if(!casted):
 				casted = true
+				#$"../Fog Top".visible = false
 				$"AttackShadow".set_angle(angleVector);
 				$"AttackShadow".visible = true
+				enemy.get_node("AnimatedSprite").material = onecolor
+				enemy.get_node("AnimatedSprite").material.set_shader_param("u_replacement_color", Color("#001535"))
 				oldZE = enemy.z_index 
 				enemy.z_index = 4091
 				oldZP = $"..".z_index 
@@ -29,6 +33,9 @@ func _process(delta):
 		$"Hit".play()
 		return
 	elif(time<0):
+		$"../Camera2D".shakeAmount = 512
+		#$"../Fog Top".visible = true
+		enemy.get_node("AnimatedSprite").material = null
 		$"AttackShadow".visible = false
 		time = 0
 		casted = false

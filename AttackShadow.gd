@@ -1,6 +1,6 @@
 extends Node2D
 
-const pixelSize = 12
+const pixelSize = 24
 const shadowWidth = PI/3
 const shadowColor = '#001535'
 const lightColor = '#FFFFFF'

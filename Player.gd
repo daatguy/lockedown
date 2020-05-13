@@ -34,6 +34,7 @@ var dashReleased = false;
 var polygonPresent = false;
 var polygonVectorArray = [];
 var lastHitEnemy = null
+var lazerTime = 0
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -129,7 +130,8 @@ func _process(delta):
 			hitVector.y *= -1
 			var paf = $"PlayerAttackFreeze"
 			paf.angleVector = hitVector
-			paf.time = 0.21
+			lazerTime = 60/$"MusicTimer".bpm
+			paf.time = $"MusicTimer".get_time_to_next_beat_delay(lazerTime)
 			paf.enemy = collision.collider
 		else:
 			velocity = velocity.slide(collision.normal)
@@ -189,7 +191,7 @@ func _on_Bullet_hit(damage, _dirIn):
 		level.call_deferred("free")
 	else:
 		$"Camera2D".shakeAmount = 16;
-		$"PlayerHitFreeze".time = 0.5;
+		$"PlayerHitFreeze".time = 0.1;
 	
 func _input(event):
 	if event is InputEventMouseButton && reload > firing:

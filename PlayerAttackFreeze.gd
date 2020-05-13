@@ -14,8 +14,10 @@ func _process(delta):
 		get_tree().paused = true
 		$"../AnimatedSprite".animation = "attack"
 		var frame = $"..".direction*2
-		if(time<0.2):
+		if(time<$"..".lazerTime):
 			if(!casted):
+				AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
+				$"Lazer".play()
 				casted = true
 				#$"../Fog Top".visible = false
 				$"AttackShadow".set_angle(angleVector);
@@ -30,9 +32,11 @@ func _process(delta):
 				$"..".update()
 			frame += 1
 		$"../AnimatedSprite".frame = frame
-		$"Hit".play()
 		return
 	elif(time<0):
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
+		$"Lazer".stop()
+		$"Hit".play()
 		$"../Camera2D".shakeAmount = 512
 		#$"../Fog Top".visible = true
 		enemy.get_node("AnimatedSprite").material = null

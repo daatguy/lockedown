@@ -37,7 +37,7 @@ func _process(delta):
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 		$"Lazer".stop()
 		$"Hit".play()
-		$"../Camera2D".shakeAmount = 512
+		$"../Camera2D".set_shake(144,0.92)
 		#$"../Fog Top".visible = true
 		enemy.get_node("AnimatedSprite").material = null
 		$"AttackShadow".visible = false

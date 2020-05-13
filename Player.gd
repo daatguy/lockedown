@@ -190,7 +190,7 @@ func _on_Bullet_hit(damage, _dirIn):
 		root.remove_child(level)
 		level.call_deferred("free")
 	else:
-		$"Camera2D".shakeAmount = 16;
+		$"Camera2D".set_shake(64,0.65)
 		$"PlayerHitFreeze".time = 0.1;
 	
 func _input(event):

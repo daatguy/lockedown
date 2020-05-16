@@ -29,14 +29,12 @@ func _process(delta):
 	var z = z_offset+position[1]*0.1
 	if(z>-4095 && z<4096):
 		z_index = z
-	direction = floor(rad2deg(angle_to_player())/45+3.5)
-	if(direction==-1):
-		direction = 0;
+	direction = dir_to_player()
 	var distance = $"../Player".global_position.distance_to(global_position);
 	if((distance<shootRange) || (distance<sightRange && time<=movePause)):
 		time += delta
 	if(distance<sightRange && (distance>=shootRange && time>movePause && distance>minRange)):
-		velocity = Vector2.RIGHT.rotated((direction+1)/8*2*PI)*moveSpeed*delta
+		velocity = Vector2.RIGHT.rotated((direction+1)/8.0*2*PI)*moveSpeed*delta
 	else:
 		velocity = Vector2.ZERO
 	if(time > seconds_per_shot):
@@ -44,7 +42,7 @@ func _process(delta):
 		shoot_pattern()
 	velocity += recoilVector
 	#1000.0 because of floating point weirdness
-	recoilVector *= pow(recoilDecay,1000.0/delta)
+	if(delta!=0): recoilVector *= pow(recoilDecay,1000.0/delta)
 	var collision = move_and_collide(velocity)
 	if collision:
 		velocity = velocity.slide(collision.normal)
@@ -71,14 +69,30 @@ func shoot(v, reach, damage):
 
 func shoot_angle(speed, angle, reach, damage):
 	var v = Vector2(-speed, 0)
-	v = v.rotated(angle)
+	v = v.rotated(angle-PI*0.75)
 	return shoot(v, reach, damage)
 	
 func angle_to_player():
-	return position.angle_to_point($"../Player".position)
+	var vec = $"../Player".position-position
+	var r = 0;
+	if(vec.x==0):
+		r = 0.5*PI if vec.y>0 else 1.5*PI
+	else:
+		r = atan2(vec.y,vec.x)-PI/4
+	if(r<0): r+= 2*PI
+	if(r>2*PI): r-= 2*PI
+	return r
+	
+func dir_to_player():
+	var r = int(angle_8_to_player()/PI*4)
+	return r if r<8 else 0
 	
 func angle_8_to_player():
-	return deg2rad(floor(rad2deg(angle_to_player())/45+0.5)*45)
+	var distance = $"../Player".global_position.distance_to(global_position);
+	if(distance<1600):
+		pass
+		#print(round(angle_to_player()/2/PI*8)/8*2*PI)
+	return round(angle_to_player()/2/PI*8)/8*2*PI
 
 func set_health(h):
 	health = h

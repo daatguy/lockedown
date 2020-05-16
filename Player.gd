@@ -31,8 +31,6 @@ var dashFrames = 0;
 var dashVector : Vector2;
 var dashing = false
 var dashReleased = false;
-var polygonPresent = false;
-var polygonVectorArray = [];
 var lastHitEnemy = null
 var lazerTime = 0
 var timeSinceAttack = 0;
@@ -41,38 +39,6 @@ var attacksInRow = 0;
 func _ready():
 	screen_size = get_viewport_rect().size
 	#$RayCast2D.add_exception(self)
-
-func place_polygon():
-	if(polygonPresent==false):
-		polygonVectorArray = [];
-		var polygonAttackAdd = PlayerAttack.instance()
-		polygonAttackAdd.position = position
-		$"..".add_child(polygonAttackAdd)
-		polygonPresent = true
-	var polygonAttack = $"../PlayerPolygonAttack"
-	var point = position-polygonAttack.position
-	polygonVectorArray.append(point);
-	polygonAttack.get_node("CollisionPolygon2D").set_polygon(polygonVectorArray)
-	polygonAttack.get_node("DrawPolygon").set_polygon(polygonVectorArray)
-	print(polygonAttack.get_node("CollisionPolygon2D").polygon)
-
-func sort_polygon():
-	var average = Vector2.ZERO;
-	var count = 0;
-	for point in polygonVectorArray:
-		count += 1
-		average += point
-	average /= count
-	var angleMap = []
-	count = 0
-	for point in polygonVectorArray:
-		pass
-		#angleMap.append(new Vector2(count,))
-
-func attack_polygon():
-	if(polygonPresent==true):
-		if($"../PlayerPolygonAttack".detonate()):
-			polygonPresent = false;
 
 func _process(delta):
 	timeSinceAttack += delta

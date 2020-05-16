@@ -1,11 +1,11 @@
 extends KinematicBody2D
 var time = 0
 export (PackedScene) var Bullet = preload("res://BaseBullet.tscn")
-export (float) var seconds_per_shot = 1.5
+export (float) var seconds_per_shot = 1.2
 var recoilVector = Vector2.ZERO
 var recoilAmount = 50;
-var recoilDecay = 0.0001;
-var movePause = 1.3;
+var recoilDecay = 0.1;
+var movePause = 0.6;
 var moveSpeed = 600;
 var pitch;
 var pitchVariation = 0.3
@@ -34,25 +34,28 @@ func _process(delta):
 	if((distance<shootRange) || (distance<sightRange && time<=movePause)):
 		time += delta
 	if(distance<sightRange && (distance>=shootRange && time>movePause && distance>minRange)):
-		velocity = Vector2.RIGHT.rotated((direction+1)/8.0*2*PI)*moveSpeed*delta
+		velocity = Vector2.RIGHT.rotated(angle_to_player()+PI/4)*moveSpeed*delta
 	else:
 		velocity = Vector2.ZERO
 	if(time > seconds_per_shot):
 		time = fmod(time, seconds_per_shot)
 		shoot_pattern()
 	velocity += recoilVector
-	#1000.0 because of floating point weirdness
-	if(delta!=0): recoilVector *= pow(recoilDecay,1000.0/delta)
+	if(delta!=0): recoilVector *= pow(recoilDecay,1.0/delta)
+	#buggy error handling from pow
+	if(str(recoilVector)=="(-1.#IND,-1.#IND)"): recoilVector = Vector2.ZERO
+	if(str(velocity)=="(-1.#IND,-1.#IND)"): velocity = Vector2.ZERO
 	var collision = move_and_collide(velocity)
 	if collision:
 		velocity = velocity.slide(collision.normal)
+		#warning-ignore:RETURN_VALUE_DISCARDED
 		move_and_collide(velocity)
 		
 		
 func shoot_pattern():
 	var distance = $"../Player".global_position.distance_to(global_position);
 	if(distance<shootRange):
-		shoot_angle(900, angle_8_to_player(), 3000, 1)
+		shoot_angle(900, angle_8_to_player(), 900*1.2*2, 1)
 		get_node("ShootSound").pitch_scale = pitch-pitchVariation/2+pitchVariation*randf();
 		get_node("ShootSound").play();
 
@@ -64,6 +67,7 @@ func shoot(v, reach, damage):
 	bullet.reach = reach
 	bullet.damage = damage
 	shooting = true
+	sprite.frame = 0
 	recoilVector = -v.normalized()*recoilAmount
 	return bullet
 

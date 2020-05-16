@@ -10,6 +10,7 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" parent="." index="1"]
 frames = ExtResource( 4 )
+frame = 1
 
 [node name="ShootSound" parent="." index="2"]
 stream = ExtResource( 3 )

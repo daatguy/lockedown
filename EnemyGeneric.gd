@@ -85,13 +85,11 @@ func angle_to_player():
 	
 func dir_to_player():
 	var r = int(angle_8_to_player()/PI*4)
-	return r if r<8 else 0
+	if r>=8: r = 0
+	if r<0: r = 7
+	return r 
 	
 func angle_8_to_player():
-	var distance = $"../Player".global_position.distance_to(global_position);
-	if(distance<1600):
-		pass
-		#print(round(angle_to_player()/2/PI*8)/8*2*PI)
 	return round(angle_to_player()/2/PI*8)/8*2*PI
 
 func set_health(h):

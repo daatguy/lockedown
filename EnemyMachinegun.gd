@@ -13,10 +13,7 @@ func _ready():
 
 func _process(_delta):
 	if(seconds_per_shot == between_volley_shots):
-		var dir = floor(rad2deg(angle_to_player())/45+3.5)
-		if(dir==-1):
-			dir = 0;
-		print(dir)
+		var dir = dir_to_player()
 		$"AnimatedSprite".animation = "shoot"+str(dir)
 		$"AnimatedSprite".speed_scale = 1;
 	elif(time>1):

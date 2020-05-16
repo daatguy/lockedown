@@ -34,6 +34,7 @@ func _process(delta):
 		$"../AnimatedSprite".frame = frame
 		return
 	elif(time<0):
+		$"../AshFX".add_splat(enemy.get_global_position(), fposmod(round(rad2deg(angleVector.angle())/45),8))
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 		$"Lazer".stop()
 		$"Hit".pitch_scale = 0.8+$"..".attacksInRow*0.15

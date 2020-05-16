@@ -24,7 +24,6 @@ script = ExtResource( 3 )
 scale = Vector2( 12, 12 )
 frames = ExtResource( 2 )
 animation = "idle7"
-frame = 1
 playing = true
 script = ExtResource( 1 )
 

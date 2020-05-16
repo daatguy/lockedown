@@ -7,7 +7,9 @@ export var between_volleys = 4
 
 func _ready():
 	pitchVariation = 0;
-	sightRange = 1200;
+	shootRange = 1600;
+	sightRange = 1600;
+	moveSpeed = 0;
 
 func _process(_delta):
 	if(seconds_per_shot == between_volley_shots):
@@ -27,7 +29,7 @@ func _process(_delta):
 func shoot_pattern():
 	var distance = $"../Player".global_position.distance_to(global_position);
 	if (shots_taken == shots_per_volley):
-		if(distance<sightRange):
+		if(distance<shootRange):
 			shots_taken = 0
 			seconds_per_shot = between_volleys
 			get_node("ShootSound").play();
@@ -36,5 +38,5 @@ func shoot_pattern():
 		return
 	elif (shots_taken == 0):
 		seconds_per_shot = between_volley_shots
-	shoot_angle(800, angle_to_player(), 1500, 1)
+	shoot_angle(900, angle_to_player(), 1500, 1)
 	shots_taken += 1

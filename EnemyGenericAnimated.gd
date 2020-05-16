@@ -10,7 +10,9 @@ extends "res://EnemyGeneric.gd"
 func _process(_delta):
 	if velocity.length() > 0:
 		sprite.animation = "walk"+str(direction)
+		sprite.speed_scale = moveSpeed/500.0
 	else:
+		sprite.speed_scale = 1
 		if(shooting):
 			sprite.animation = "shoot"+str(direction)
 			if(sprite.frame==1):

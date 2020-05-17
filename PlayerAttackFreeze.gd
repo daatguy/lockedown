@@ -7,6 +7,7 @@ var angleVector = Vector2.ZERO;
 var enemy = null
 var oldZP = 0
 var oldZE = 0
+
 # Declare member variables here. Examples:
 func _process(delta):
 	if(time>0):
@@ -30,11 +31,17 @@ func _process(delta):
 				$"..".z_index = 4092
 				enemy.update()
 				$"..".update()
+				$"../AshParticles".position = (enemy.get_global_position()-$"..".get_global_position()).normalized()*256
+				var dirvec = (enemy.get_global_position()-$"..".get_global_position()).normalized().rotated(PI/4)
+				#$"../AshParticles".process_material.direction = Vector3(dirvec.x,dirvec.y,0)
+				#set_emission_mask(fposmod(round(angleVector.angle()/2/PI*8)*2*PI/8,8))
+				$"../AshParticles".emitting = true
 			frame += 1
 		$"../AnimatedSprite".frame = frame
 		return
 	elif(time<0):
-		$"../AshFX".add_splat(enemy.get_global_position(), fposmod(round(rad2deg(angleVector.angle())/45),8))
+		$"../AshParticles".emitting = false
+		$"../AshFX".add_splat(enemy.get_global_position(), fposmod(floor(rad2deg(angleVector.angle())/45),8))
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 		$"Lazer".stop()
 		$"Hit".pitch_scale = 0.8+$"..".attacksInRow*0.15
@@ -50,7 +57,7 @@ func _process(delta):
 		$"..".z_index = oldZP
 	if(!get_parent().get_parent().get_node("PauseController").paused==true):
 		get_tree().paused = false
-
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

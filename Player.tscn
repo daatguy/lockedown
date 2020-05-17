@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://player.tres" type="SpriteFrames" id=2]
@@ -20,66 +20,74 @@
 [ext_resource path="res://sounds/player attack 2.wav" type="AudioStream" id=18]
 [ext_resource path="res://AshFX.gd" type="Script" id=19]
 [ext_resource path="res://sprites/ash_cone.png" type="Texture" id=20]
+[ext_resource path="res://sprites/white.png" type="Texture" id=21]
+[ext_resource path="res://AshParticles.tres" type="Material" id=22]
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 4 )
 region = Rect2( 512, 0, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 4 )
 region = Rect2( 1024, 0, 512, 512 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 4 )
 region = Rect2( 1536, 0, 512, 512 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "wave",
 "speed": 5.0
 } ]
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 7 )
-region = Rect2( 512, 0, 512, 512 )
+region = Rect2( 0, 0, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 7 )
-region = Rect2( 1024, 0, 512, 512 )
+region = Rect2( 512, 0, 512, 512 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 7 )
+region = Rect2( 1024, 0, 512, 512 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 7 )
 region = Rect2( 1536, 0, 512, 512 )
 
-[sub_resource type="SpriteFrames" id=10]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
 "name": "wave",
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=11]
+[sub_resource type="CapsuleShape2D" id=12]
 radius = 48.0
 height = 0.0
 
-[sub_resource type="CanvasItemMaterial" id=12]
+[sub_resource type="CanvasItemMaterial" id=13]
 particles_animation = true
 particles_anim_h_frames = 6
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
-[sub_resource type="ParticlesMaterial" id=13]
+[sub_resource type="ParticlesMaterial" id=14]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 49, 0 )
@@ -106,6 +114,24 @@ bus = "Music"
 pause_mode = 2
 script = ExtResource( 16 )
 
+[node name="AshParticles" type="Particles2D" parent="."]
+pause_mode = 2
+show_behind_parent = true
+material = SubResource( 1 )
+z_index = 4090
+z_as_relative = false
+emitting = false
+amount = 300
+lifetime = 8.0
+visibility_rect = Rect2( -160, -90, 320, 180 )
+local_coords = false
+draw_order = 1
+process_material = ExtResource( 22 )
+texture = ExtResource( 21 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="AshFX" type="Node2D" parent="."]
 z_index = 1
 z_as_relative = false
@@ -116,7 +142,7 @@ texture = ExtResource( 20 )
 scale = Vector2( 12, 12 )
 z_index = 20
 z_as_relative = false
-frames = SubResource( 5 )
+frames = SubResource( 6 )
 animation = "wave"
 playing = true
 script = ExtResource( 5 )
@@ -129,7 +155,7 @@ __meta__ = {
 scale = Vector2( 12, 12 )
 z_index = 4095
 z_as_relative = false
-frames = SubResource( 10 )
+frames = SubResource( 11 )
 animation = "wave"
 frame = 2
 playing = true
@@ -161,7 +187,7 @@ z_index = 4096
 z_as_relative = false
 frames = ExtResource( 11 )
 animation = "4"
-frame = 7
+frame = 6
 playing = true
 script = ExtResource( 5 )
 __meta__ = {
@@ -180,7 +206,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 24 )
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true
@@ -220,7 +246,7 @@ volume_db = -6.0
 
 [node name="DashParticles" type="Particles2D" parent="."]
 show_behind_parent = true
-material = SubResource( 12 )
+material = SubResource( 13 )
 emitting = false
 amount = 16
 lifetime = 0.2
@@ -228,7 +254,7 @@ one_shot = true
 visibility_rect = Rect2( -512, -512, 1024, 1024 )
 local_coords = false
 draw_order = 1
-process_material = SubResource( 13 )
+process_material = SubResource( 14 )
 texture = ExtResource( 13 )
 __meta__ = {
 "_edit_lock_": true

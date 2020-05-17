@@ -32,7 +32,7 @@ func _process(delta):
 				enemy.update()
 				$"..".update()
 				$"../AshParticles".position = (enemy.get_global_position()-$"..".get_global_position()).normalized()*256
-				var dirvec = (enemy.get_global_position()-$"..".get_global_position()).normalized().rotated(PI/4)
+				#var dirvec = (enemy.get_global_position()-$"..".get_global_position()).normalized().rotated(PI/4)
 				#$"../AshParticles".process_material.direction = Vector3(dirvec.x,dirvec.y,0)
 				#set_emission_mask(fposmod(round(angleVector.angle()/2/PI*8)*2*PI/8,8))
 				$"../AshParticles".emitting = true

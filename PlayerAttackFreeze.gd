@@ -7,13 +7,16 @@ var angleVector = Vector2.ZERO;
 var enemy = null
 var oldZP = 0
 var oldZE = 0
+var hitdir;
 
 # Declare member variables here. Examples:
 func _process(delta):
 	if(time>0):
+		hitdir = fposmod(round(rad2deg(angleVector.angle())/45),8)
 		time -= delta
 		get_tree().paused = true
 		$"../AnimatedSprite".animation = "attack"
+		$"../AnimatedSprite".frame = hitdir
 		var frame = $"..".direction*2
 		if(time<$"..".lazerTime):
 			if(!casted):
@@ -41,7 +44,7 @@ func _process(delta):
 		return
 	elif(time<0):
 		$"../AshParticles".emitting = false
-		$"../AshFX".add_splat(enemy.get_global_position(), fposmod(floor(rad2deg(angleVector.angle())/45),8))
+		$"../AshFX".add_splat(enemy.get_global_position(), hitdir)
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 		$"Lazer".stop()
 		$"Hit".pitch_scale = 0.8+$"..".attacksInRow*0.15

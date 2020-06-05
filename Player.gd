@@ -49,6 +49,7 @@ func _process(delta):
 	z_index = int(99+position[1]*0.1)
 	
 	var velocity = Vector2.ZERO
+	var walkingPressed = false
 	if(dashing):
 		if(delta!=0):
 			dashFrames += targetDelta/delta;
@@ -76,19 +77,24 @@ func _process(delta):
 			reload += delta;
 		if Input.is_action_pressed("right"):
 			velocity += Vector2.RIGHT
+			walkingPressed = true
 		if Input.is_action_pressed("left"):
 			velocity += Vector2.LEFT
+			walkingPressed = true
 		if Input.is_action_pressed("down"):
 			velocity += Vector2.DOWN
+			walkingPressed = true
 		if Input.is_action_pressed("up"):
 			velocity += Vector2.UP
+			walkingPressed = true
 		if Input.is_action_just_pressed('dash'):
 			dash()
+			walkingPressed = true
 		velocity = velocity.normalized() * speed * delta
-	if velocity.length() > 0:
+	if (velocity.length() > 0 && walkingPressed):
 		direction = fposmod(round(rad2deg(-velocity.angle())/45),8);
 		sprite.animation = "walk"+str(direction)
-	else:
+	elif(sprite.animation!="attack"):
 		sprite.animation = "idle"+str(direction)
 	#if(!test_move(transform,velocity)):
 	var oldPos = position

@@ -16,8 +16,7 @@ func _process(delta):
 		time -= delta
 		get_tree().paused = true
 		$"../AnimatedSprite".animation = "attack"
-		$"../AnimatedSprite".frame = hitdir
-		var frame = $"..".direction*2
+		var frame = hitdir*3
 		if(time<$"..".lazerTime):
 			if(!casted):
 				AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
@@ -42,13 +41,15 @@ func _process(delta):
 			frame += 1
 		$"../AnimatedSprite".frame = frame
 		return
-	elif(time<0):
+	elif(time<=0 && casted):
 		$"../AshParticles".emitting = false
 		$"../AshFX".add_splat(enemy.get_global_position(), hitdir)
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 		$"Lazer".stop()
 		$"Hit".pitch_scale = 0.8+$"..".attacksInRow*0.15
 		$"Hit".play()
+		$"../AnimatedSprite".frame = hitdir*3+2
+		$"..".direction = hitdir
 		$"../Camera2D".set_shake(144,0.92)
 		#$"../Fog Top".visible = true
 		enemy.get_node("AnimatedSprite").material = null

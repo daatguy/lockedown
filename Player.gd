@@ -12,7 +12,7 @@ export var Ray = preload("res://Ray.tscn")
 var targetFPS : float = 60.0;
 var targetDelta : float = 1.0/targetFPS;
 var reload = 0;
-var firing = .25; #how many seconds it takes you to shoot a bullet
+#var firing = .25; #how many seconds it takes you to shoot a bullet
 var maxHealth = 4;
 var health = maxHealth
 var cameraFollowPause = false;
@@ -23,6 +23,10 @@ var dashSpeed = 5600;
 var dashSpeedCutoff = 2400;
 var dashDecay = 0.9;
 var dashDecayHold = 0.6;
+var dashConsecutive = 0.7;
+var dashMultiplier = 1.0;
+var dashMultiMin = 0.25;
+var dashRecharge = 0.75;
 var dashDistance = 0;
 var dashMouseDistance;
 var dashBulletMax = 1;
@@ -35,31 +39,39 @@ var lastHitEnemy = null
 var lazerTime = 0
 var timeSinceAttack = 0;
 var attacksInRow = 0;
+var velocity
+var lastDelta
 
 func _ready():
 	screen_size = get_viewport_rect().size
 	#$RayCast2D.add_exception(self)
 
 func _process(delta):
+	lastDelta = delta
 	timeSinceAttack += delta
 	if(timeSinceAttack>1.5):
 		#Reset our pitch run
 		attacksInRow = 0;
 	healthBar.animation = str(health);
 	z_index = int(99+position[1]*0.1)
+	if(dashMultiplier<1.0/dashConsecutive):
+		if(dashMultiplier<dashMultiMin): dashMultiplier = dashMultiMin;
+		dashMultiplier /= pow(dashConsecutive,delta/dashRecharge)
+		if(dashMultiplier>1.0/dashConsecutive): dashMultiplier = 1.0/dashConsecutive
+	$"Camera2D/DashBar".frame = floor((1.0-((dashMultiplier-dashMultiMin)/(1.0/dashConsecutive-dashMultiMin)))*20.0)
 	
-	var velocity = Vector2.ZERO
+	velocity = Vector2.ZERO
 	var walkingPressed = false
 	if(dashing):
 		if(delta!=0):
 			dashFrames += targetDelta/delta;
 		var decay = dashDecay;
-		$"DashSound".pitch_scale = 1.3+0.15*randf()
+		#$"DashSound".pitch_scale = 1.3+0.15*randf()
 		if(Input.is_action_pressed("dash") && !dashReleased):
 			decay = dashDecayHold
 		else:
 			dashReleased = true
-		velocity = delta * dashVector.normalized() * (dashSpeed) * pow(decay, dashFrames)
+		velocity = delta * dashVector.normalized() * (dashSpeed*dashMultiplier) * pow(decay, dashFrames)
 		if(dashFrames>dashCameraLength):
 			cameraFollowPause = false;
 		if(dashDistance+velocity.length()>dashMouseDistance):
@@ -73,8 +85,8 @@ func _process(delta):
 			stop_dash()
 	else:
 		cameraFollowPause = false
-		if(reload < firing):
-			reload += delta;
+		#if(reload < firing):
+		#	reload += delta;
 		if Input.is_action_pressed("right"):
 			velocity += Vector2.RIGHT
 			walkingPressed = true
@@ -91,7 +103,7 @@ func _process(delta):
 			dash()
 			walkingPressed = true
 		velocity = velocity.normalized() * speed * delta
-	if (velocity.length() > 0 && walkingPressed):
+	if (velocity.length() > 0 && (walkingPressed or sprite.animation!="attack")):
 		direction = fposmod(round(rad2deg(-velocity.angle())/45),8);
 		sprite.animation = "walk"+str(direction)
 	elif(sprite.animation!="attack"):
@@ -137,6 +149,9 @@ func is_valid_hit(_damage, dirIn):
 	return false
 
 func dash():
+	dashMultiplier *= dashConsecutive
+	$"DashSound".pitch_scale = dashMultiplier*1.5
+	$"DashSound".volume_db = -18+6*dashMultiplier
 	$"DashSound".play()
 	$"DashParticles".emitting = true
 	dashing = true;
@@ -172,15 +187,15 @@ func _on_Bullet_hit(damage, _dirIn):
 		$"Camera2D".set_shake(64,0.65)
 		$"PlayerHitFreeze".time = 0.1;
 	
-func _input(event):
-	if event is InputEventMouseButton && reload > firing:
-		var angle = get_global_position().angle_to_point(get_global_mouse_position())
+#func _input(event):
+#	if event is InputEventMouseButton && reload > firing:
+#		var angle = get_global_position().angle_to_point(get_global_mouse_position())
 		#shoot_angle(1000, angle, 500,1)
 		#shoot_raycast(angle)
-		reload = 0
-		var ray = Ray.instance()
-		ray.rotation = angle+PI
-		add_child(ray)
+#		reload = 0
+#		var ray = Ray.instance()
+#		ray.rotation = angle+PI
+#		add_child(ray)
 
 		
 func shoot(v, reach, damage):

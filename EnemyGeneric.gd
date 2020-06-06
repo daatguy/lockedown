@@ -15,6 +15,8 @@ var sightRange = 1000;
 var z_offset = 99;
 var velocity : Vector2
 var direction;
+var smartAngleBias = 0.7;
+var smartMoveBias = 0.5;
 var shooting = false
 var health = 2 setget set_health
 onready var sprite = get_node("AnimatedSprite")
@@ -34,7 +36,7 @@ func _process(delta):
 	if((distance<shootRange) || (distance<sightRange && time<=movePause)):
 		time += delta
 	if(distance<sightRange && (distance>=shootRange && time>movePause && distance>minRange)):
-		velocity = Vector2.RIGHT.rotated(angle_to_player()+PI/4)*moveSpeed*delta
+		velocity = Vector2.RIGHT.rotated(smart_angle_to_player(distance/moveSpeed,smartMoveBias)+PI/4)*moveSpeed*delta
 	else:
 		velocity = Vector2.ZERO
 	if(time > seconds_per_shot):
@@ -55,7 +57,7 @@ func _process(delta):
 func shoot_pattern():
 	var distance = $"../Player".global_position.distance_to(global_position);
 	if(distance<shootRange):
-		shoot_angle(900, angle_8_to_player(), 900*1.2*2, 1)
+		shoot_angle(900, smart_angle_8_to_player(distance/900, smartAngleBias), 900*1.2*2, 1)
 		get_node("ShootSound").pitch_scale = pitch-pitchVariation/2+pitchVariation*randf();
 		get_node("ShootSound").play();
 
@@ -87,6 +89,17 @@ func angle_to_player():
 	if(r>2*PI): r-= 2*PI
 	return r
 	
+func smart_angle_to_player(itime, bias):
+	var vec = $"../Player".position+$"../Player".velocity*itime/$"../Player".lastDelta*bias-position
+	var r = 0;
+	if(vec.x==0):
+		r = 0.5*PI if vec.y>0 else 1.5*PI
+	else:
+		r = atan2(vec.y,vec.x)-PI/4
+	if(r<0): r+= 2*PI
+	if(r>2*PI): r-= 2*PI
+	return r
+	
 func dir_to_player():
 	var r = int(angle_8_to_player()/PI*4)
 	if r>=8: r = 0
@@ -95,6 +108,9 @@ func dir_to_player():
 	
 func angle_8_to_player():
 	return round(angle_to_player()/2/PI*8)/8*2*PI
+	
+func smart_angle_8_to_player(itime,bias):
+	return round(smart_angle_to_player(itime,bias)/2/PI*8)/8*2*PI
 
 func set_health(h):
 	health = h

@@ -33,6 +33,8 @@ func _process(delta):
 		queue_free()
 	position += velocity * delta
 	reach -= velocity.length() * delta
+	if(reach<250):
+		$"AnimatedSprite".visible = (round(reach/50)==floor(reach/50))
 
 func _on_Area2D_body_enter(body):
 	if body.is_in_group("player"):

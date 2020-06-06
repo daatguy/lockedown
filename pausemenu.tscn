@@ -12,14 +12,6 @@
 [ext_resource path="res://sounds/button_hover.wav" type="AudioStream" id=10]
 [ext_resource path="res://sounds/options_load.wav" type="AudioStream" id=11]
 
-[sub_resource type="StyleBoxEmpty" id=5]
-
-[sub_resource type="StyleBoxEmpty" id=6]
-
-[sub_resource type="StyleBoxEmpty" id=7]
-
-[sub_resource type="StyleBoxEmpty" id=8]
-
 [sub_resource type="StyleBoxEmpty" id=1]
 
 [sub_resource type="StyleBoxEmpty" id=2]
@@ -27,6 +19,14 @@
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
 
 [sub_resource type="StyleBoxEmpty" id=9]
 
@@ -68,14 +68,14 @@ margin_right = 85.6
 margin_bottom = -169.0
 rect_rotation = 2.0
 mouse_default_cursor_shape = 2
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
 custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
-custom_colors/font_color = Color( 0.603922, 0.00784314, 0.337255, 1 )
-custom_colors/font_color_hover = Color( 1, 0.184314, 0.184314, 1 )
+custom_colors/font_color = Color( 0.352941, 0.380392, 0.356863, 1 )
+custom_colors/font_color_hover = Color( 0.537255, 0.619608, 0.615686, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 text = "options"
 flat = true
@@ -102,14 +102,14 @@ margin_right = -1.28003
 margin_bottom = -142.08
 rect_rotation = -2.0
 mouse_default_cursor_shape = 2
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
 custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
-custom_colors/font_color = Color( 0.603922, 0.00784314, 0.337255, 1 )
-custom_colors/font_color_hover = Color( 1, 0.184314, 0.184314, 1 )
+custom_colors/font_color = Color( 0.352941, 0.380392, 0.356863, 1 )
+custom_colors/font_color_hover = Color( 0.537255, 0.619608, 0.615686, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 text = "resume"
 flat = true
@@ -140,8 +140,8 @@ custom_styles/pressed = SubResource( 9 )
 custom_styles/focus = SubResource( 10 )
 custom_styles/normal = SubResource( 11 )
 custom_fonts/font = ExtResource( 9 )
-custom_colors/font_color = Color( 0.603922, 0.00784314, 0.337255, 1 )
-custom_colors/font_color_hover = Color( 1, 0.184314, 0.184314, 1 )
+custom_colors/font_color = Color( 0.352941, 0.380392, 0.356863, 1 )
+custom_colors/font_color_hover = Color( 0.537255, 0.619608, 0.615686, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 text = "quit"
 flat = true

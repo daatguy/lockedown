@@ -1,6 +1,8 @@
 extends "res://EnemyGenericAnimated.gd"
 
 func _ready():
+	smartAngleBias = 0.6
+	smartMoveBias = 0.0
 	sightRange = 1600;
 	moveSpeed = 400;
 	movePause = 0.4;
@@ -12,7 +14,7 @@ func _ready():
 func shoot_pattern():
 	var distance = $"../Player".global_position.distance_to(global_position);
 	if(distance<shootRange):
-		var angle = angle_8_to_player()
+		var angle = smart_angle_8_to_player(distance/600, smartAngleBias)
 		#shoot_angle(400, angle + .2, 800, 20)
 		#shoot_angle(400, angle - .2, 800, 20)
 		var bullet0 = shoot_angle(600, angle, 820, 1)

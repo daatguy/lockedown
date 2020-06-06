@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://OnLoad.gd" type="Script" id=1]
+[ext_resource path="res://ingame.gd" type="Script" id=2]
+[ext_resource path="res://tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://Generator.gd" type="Script" id=4]
+[ext_resource path="res://TextCard.tscn" type="PackedScene" id=8]
+
+[node name="ingame" type="Node2D"]
+pause_mode = 1
+position = Vector2( -4071.28, -4055.97 )
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 12, 12 )
+z_index = -4096
+z_as_relative = false
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+cell_y_sort = true
+format = 1
+tile_data = PoolIntArray( 1179653, 14, 327680, 1179654, 14, 327684, 1179655, 14, 393220, 1179656, 14, 131076, 1179657, 14, 2, 1245189, 15, 0, 1245190, 15, 1, 1245191, 14, 131072, 1245192, 14, 131073, 1245193, 14, 131074, 1310725, 15, 65536, 1310726, 15, 65537, 1310727, 15, 0, 1310728, 15, 2, 1310729, 15, 3, 1376263, 15, 65536, 1376264, 15, 65538, 1376265, 15, 65539 )
+
+[node name="OnLoad" type="Node" parent="."]
+script = ExtResource( 1 )
+TextCard = ExtResource( 8 )
+
+[node name="PauseController" type="Node" parent="."]
+pause_mode = 2
+process_priority = 1
+script = ExtResource( 2 )
+
+[node name="Generator" type="Node" parent="."]
+script = ExtResource( 4 )

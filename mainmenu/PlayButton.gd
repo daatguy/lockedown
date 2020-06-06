@@ -16,7 +16,7 @@ func _pressed():
 	._pressed();
 	self.owner.queue_free()
 	#warning-ignore: RETURN_VALUE_DISCARDED
-	get_tree().change_scene("ingame.tscn");
+	get_tree().change_scene("res://generated.tscn");
 
 func _process(delta):
 	if(title && time<0.8):

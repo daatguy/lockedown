@@ -123,6 +123,8 @@ func _process(delta):
 			paf.time = $"MusicTimer".get_time_to_next_beat_delay(lazerTime)
 			paf.enemy = collision.collider
 			timeSinceAttack = 0;
+			# Reset the dash
+			dashMultiplier = 1.0/dashConsecutive;
 			attacksInRow += 1;
 		else:
 			velocity = velocity.slide(collision.normal)
